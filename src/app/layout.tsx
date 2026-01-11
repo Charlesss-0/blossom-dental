@@ -20,6 +20,9 @@ export const metadata: Metadata = {
   title: "Blossom Dental - Odontología General y Ortodoncia",
   description:
     "Experimenta el cuidado dental premium y gentil en Blossom Dental. Agenda tu cita hoy.",
+  verification: {
+    google: "zkagBrTOB5Gf1AY9cA_vWbqZt1QpClKDJ_z4eq4z7hU",
+  },
 };
 
 export default function RootLayout({
