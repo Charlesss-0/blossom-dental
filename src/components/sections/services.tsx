@@ -1,28 +1,18 @@
-import {
-  Activity,
-  Anchor,
-  ShieldCheck,
-  Smile,
-  Stethoscope,
-  Syringe,
-} from "lucide-react";
-
 import { FadeIn } from "@/components/ui/fade-in";
+import Image from "next/image";
 
 const services = [
   {
     title: "Odontología General",
     description:
       "Cuidado integral para mantener tu salud bucal en perfectas condiciones.",
-    icon: Stethoscope,
     image:
-      "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?q=80&w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1644353740797-b85ffb378b3a?q=80&w=800&auto=format&fit=crop",
   },
   {
     title: "Ortodoncia",
     description:
       "Alineación dental avanzada para una sonrisa perfecta y funcional.",
-    icon: Smile,
     image:
       "https://images.unsplash.com/photo-1598531228433-d9f0cb960816?q=80&w=800&auto=format&fit=crop",
   },
@@ -30,7 +20,6 @@ const services = [
     title: "Endodoncia",
     description:
       "Tratamientos de conducto especializados para salvar tus dientes naturales.",
-    icon: Activity,
     image:
       "https://images.unsplash.com/photo-1626736985932-c0df2ae07a2e?q=80&w=800&auto=format&fit=crop",
   },
@@ -38,14 +27,12 @@ const services = [
     title: "Periodoncia",
     description:
       "Cuidado experto para la salud de tus encías y soporte dental.",
-    icon: ShieldCheck,
     image:
       "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=800&auto=format&fit=crop",
   },
   {
     title: "Cirugía",
     description: "Procedimientos quirúrgicos seguros y mínimamente invasivos.",
-    icon: Syringe,
     image:
       "https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=800&auto=format&fit=crop",
   },
@@ -53,7 +40,6 @@ const services = [
     title: "Implantes",
     description:
       "Soluciones duraderas y naturales para reemplazar dientes perdidos.",
-    icon: Anchor,
     image:
       "https://images.unsplash.com/photo-1606811842243-af7e16970c1f?q=80&w=800&auto=format&fit=crop",
   },
@@ -81,14 +67,12 @@ export function Services() {
             <FadeIn key={index} delay={index * 0.1} className="h-full">
               <div className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 h-full flex flex-col">
                 <div className="relative h-48 sm:h-56 overflow-hidden bg-gray-100">
-                  <img
+                  <Image
                     src={service.image}
                     alt={service.title}
+                    fill
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute top-4 right-4 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-900 shadow-sm">
-                    <service.icon size={22} strokeWidth={1.5} />
-                  </div>
                 </div>
                 <div className="p-8 flex-1 flex flex-col">
                   <h3 className="text-xl font-serif font-medium text-gray-900 mb-3">

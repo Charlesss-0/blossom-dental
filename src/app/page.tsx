@@ -1,10 +1,10 @@
-import { Navbar } from "@/components/layout/navbar";
+import { About } from "@/components/sections/about";
+import { Contact } from "@/components/sections/contact";
 import { Footer } from "@/components/layout/footer";
 import { Hero } from "@/components/sections/hero";
-import { About } from "@/components/sections/about";
-import { Team } from "@/components/sections/team";
+import { Navbar } from "@/components/layout/navbar";
 import { Services } from "@/components/sections/services";
-import { Contact } from "@/components/sections/contact";
+import { Team } from "@/components/sections/team";
 
 export default function Home() {
   return (

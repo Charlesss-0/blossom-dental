@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 export function Hero() {
   return (
-    <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-gray-50">
+    <section className="relative min-h-dvh flex items-center justify-center overflow-hidden bg-gray-50">
       {/* Background Image with Overlay */}
       <div
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
@@ -16,7 +16,7 @@ export function Hero() {
             "url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2800&auto=format&fit=crop')",
         }}
       >
-        <div className="absolute inset-0 bg-white/40 backdrop-blur-[4px]" />
+        <div className="absolute inset-0 bg-white/40 backdrop-blur-xs" />
       </div>
 
       <div className="container relative z-10 px-6 md:px-12 text-center max-w-4xl mx-auto mt-20">
@@ -75,7 +75,7 @@ export function Hero() {
         transition={{ delay: 1, duration: 1 }}
         className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
       >
-        <div className="w-[1px] h-16 bg-gradient-to-b from-gray-400 to-transparent mx-auto" />
+        <div className="w-px h-16 bg-linear-to-b from-gray-400 to-transparent mx-auto" />
       </motion.div>
     </section>
   );

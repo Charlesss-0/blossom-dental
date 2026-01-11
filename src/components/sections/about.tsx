@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { FadeIn } from "@/components/ui/fade-in";
+import Link from "next/link";
 
 export function About() {
   return (
@@ -8,7 +8,7 @@ export function About() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           {/* Image Side */}
           <FadeIn className="relative">
-            <div className="aspect-[4/5] bg-gray-100 rounded-2xl overflow-hidden relative">
+            <div className="aspect-4/5 bg-gray-100 rounded-2xl overflow-hidden relative">
               {/* Placeholder for now, or actual image */}
               <div
                 className="absolute inset-0 bg-cover bg-center"

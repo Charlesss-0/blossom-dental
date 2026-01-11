@@ -1,6 +1,7 @@
 "use client";
 
 import { FadeIn } from "@/components/ui/fade-in";
+import Image from "next/image";
 
 const team = [
   {
@@ -53,10 +54,11 @@ export function Team() {
               className="group h-full"
             >
               <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 h-full flex flex-col">
-                <div className="aspect-[4/5] relative overflow-hidden shrink-0">
-                  <img
+                <div className="aspect-4/5 relative overflow-hidden shrink-0">
+                  <Image
                     src={member.image}
                     alt={member.name}
+                    fill
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>

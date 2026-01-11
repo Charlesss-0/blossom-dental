@@ -1,6 +1,7 @@
 import { Facebook, Instagram } from "lucide-react";
 
 import { BookingModal } from "@/components/booking/booking-modal";
+import Image from "next/image";
 import Link from "next/link";
 
 export function Footer() {
@@ -11,9 +12,11 @@ export function Footer() {
           {/* Brand */}
           <div className="md:col-span-1">
             <Link href="/" className="mb-4 block">
-              <img
+              <Image
                 src="/logo.jpg"
                 alt="Blossom Dental"
+                width={120}
+                height={120}
                 className="h-12 w-auto object-contain rounded-full border border-gray-800"
               />
             </Link>

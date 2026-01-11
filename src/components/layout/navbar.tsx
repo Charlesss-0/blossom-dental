@@ -12,6 +12,7 @@ import {
 
 import { BookingModal } from "@/components/booking/booking-modal";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import Link from "next/link";
 import { Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -46,9 +47,11 @@ export function Navbar() {
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
-          <img
+          <Image
             src="/logo.jpg"
             alt="Blossom Dental"
+            width={120}
+            height={120}
             className="h-12 w-auto object-contain rounded-full border"
           />
         </Link>
@@ -83,13 +86,15 @@ export function Navbar() {
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="w-[85vw] sm:w-[400px] flex flex-col bg-white p-0 gap-0"
+              className="w-[85vw] sm:w-100 flex flex-col bg-white p-0 gap-0"
             >
               <SheetHeader className="p-6 border-b border-gray-100 text-left">
                 <SheetTitle>
-                  <img
+                  <Image
                     src="/logo.jpg"
                     alt="Blossom Dental"
+                    width={100}
+                    height={100}
                     className="h-10 w-auto object-contain rounded-full"
                   />
                   <span className="sr-only">Blossom Dental</span>
