@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
+import { FadeIn } from "@/components/ui/fade-in";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { FadeIn } from "@/components/ui/fade-in";
 
 export function Contact() {
   return (
@@ -33,15 +33,15 @@ export function Contact() {
                 </div>
                 <div className="space-y-2">
                   <label
-                    htmlFor="contact-email"
+                    htmlFor="contact-phone"
                     className="text-sm font-medium text-gray-700"
                   >
-                    Email
+                    Teléfono
                   </label>
                   <Input
-                    id="contact-email"
-                    type="email"
-                    placeholder="email@ejemplo.com"
+                    id="contact-phone"
+                    type="tel"
+                    placeholder="Tu número de teléfono"
                     className="bg-gray-50 border-gray-200"
                   />
                 </div>
