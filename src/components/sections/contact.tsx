@@ -2,6 +2,13 @@ import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/ui/fade-in";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export function Contact() {
   return (
@@ -48,6 +55,31 @@ export function Contact() {
               </div>
               <div className="space-y-2">
                 <label
+                  htmlFor="contact-service"
+                  className="text-sm font-medium text-gray-700"
+                >
+                  Servicio de interés
+                </label>
+                <Select>
+                  <SelectTrigger
+                    id="contact-service"
+                    className="bg-gray-50 border-gray-200"
+                  >
+                    <SelectValue placeholder="Selecciona un servicio" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="general">Odontología General</SelectItem>
+                    <SelectItem value="ortodoncia">Ortodoncia</SelectItem>
+                    <SelectItem value="endodoncia">Endodoncia</SelectItem>
+                    <SelectItem value="periodoncia">Periodoncia</SelectItem>
+                    <SelectItem value="cirugia">Cirugía</SelectItem>
+                    <SelectItem value="implantes">Implantes</SelectItem>
+                    <SelectItem value="otro">Otro</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-2">
+                <label
                   htmlFor="contact-message"
                   className="text-sm font-medium text-gray-700"
                 >
@@ -56,7 +88,7 @@ export function Contact() {
                 <Textarea
                   id="contact-message"
                   placeholder="¿Cómo podemos ayudarte?"
-                  className="min-h-[150px] bg-gray-50 border-gray-200"
+                  className="min-h-37.5 bg-gray-50 border-gray-200"
                 />
               </div>
               <Button
@@ -71,7 +103,7 @@ export function Contact() {
           {/* Map / Info */}
           <FadeIn
             delay={0.2}
-            className="relative h-full min-h-[400px] bg-gray-100 rounded-2xl overflow-hidden"
+            className="relative h-full min-h-100 bg-gray-100 rounded-2xl overflow-hidden"
           >
             {/* Google Maps Embed */}
             <div className="absolute inset-0 bg-gray-200">
