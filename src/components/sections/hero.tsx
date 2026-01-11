@@ -1,8 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { BookingModal } from "@/components/booking/booking-modal";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 export function Hero() {
   return (
@@ -15,7 +16,7 @@ export function Hero() {
             "url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2800&auto=format&fit=crop')",
         }}
       >
-        <div className="absolute inset-0 bg-white/30 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 bg-white/40 backdrop-blur-[4px]" />
       </div>
 
       <div className="container relative z-10 px-6 md:px-12 text-center max-w-4xl mx-auto mt-20">
@@ -24,7 +25,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium text-gray-900 leading-tight tracking-tight mb-6">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium text-gray-900 leading-tight tracking-tight mb-6 text-shadow-lg">
             Redefiniendo tu <br className="hidden md:block" />
             <span className="italic text-gray-700">Experiencia Dental</span>
           </h1>
@@ -34,7 +35,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="text-lg md:text-xl text-gray-700 mb-10 max-w-2xl mx-auto leading-relaxed"
+          className="text-lg md:text-xl text-gray-700 mb-10 max-w-2xl mx-auto leading-relaxed text-shadow-md"
         >
           Combinamos tecnología avanzada con un trato gentil. Creamos sonrisas
           tan saludables como hermosas.
@@ -57,11 +58,12 @@ export function Hero() {
             }
           />
           <Button
+            asChild
             variant="outline"
             size="lg"
-            className="h-14 px-8 rounded-full text-base border-gray-300 text-gray-700 hover:bg-white/80 hover:text-black backdrop-blur-sm"
+            className="h-14 px-8 rounded-full text-base border-gray-300 text-gray-700 hover:bg-white/80 hover:text-black backdrop-blur-sm transition-all hover:scale-105"
           >
-            Ver Servicios
+            <Link href="#services">Ver Servicios</Link>
           </Button>
         </motion.div>
       </div>

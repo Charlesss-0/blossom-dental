@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import { FadeIn } from "@/components/ui/fade-in";
 
 export function About() {
@@ -47,12 +47,12 @@ export function About() {
             </div>
 
             <div className="mt-10">
-              <Button
-                variant="link"
-                className="text-xl p-0 h-auto font-serif text-gray-900 underline-offset-4 hover:text-gray-600"
+              <Link
+                href="#team"
+                className="inline-flex items-center text-xl font-serif text-gray-900 underline-offset-4 hover:text-gray-600 hover:underline transition-all"
               >
                 Conoce a nuestro equipo &rarr;
-              </Button>
+              </Link>
             </div>
           </FadeIn>
         </div>

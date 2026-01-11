@@ -1,12 +1,8 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
-import { BookingModal } from "@/components/booking/booking-modal";
 
+import { Menu, X } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -14,6 +10,11 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+
+import { BookingModal } from "@/components/booking/booking-modal";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 const navLinks = [
   { href: "#about", label: "Nosotros" },
@@ -65,7 +66,7 @@ export function Navbar() {
           ))}
           <BookingModal
             trigger={
-              <Button className="rounded-full px-6 bg-black text-white hover:bg-gray-800">
+              <Button className="rounded-full px-6 bg-gray-900 text-white hover:bg-gray-800">
                 Agendar Cita
               </Button>
             }
