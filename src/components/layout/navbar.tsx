@@ -2,7 +2,6 @@
 
 import * as React from "react";
 
-import { Menu, X } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -14,6 +13,7 @@ import {
 import { BookingModal } from "@/components/booking/booking-modal";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navLinks = [

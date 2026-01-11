@@ -7,7 +7,7 @@ export function Footer() {
   return (
     <footer className="bg-gray-900 pt-16 pb-8 border-t border-gray-800">
       <div className="container mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-12 mb-12">
           {/* Brand */}
           <div className="md:col-span-1">
             <Link href="/" className="mb-4 block">
@@ -21,24 +21,6 @@ export function Footer() {
               Experimenta el cuidado dental de vanguardia en un ambiente
               relajante diseñado para tu comodidad.
             </p>
-            <div className="flex gap-4">
-              <Link
-                href="https://www.instagram.com/blossomdental.ni/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-gray-700 hover:text-white transition-colors"
-              >
-                <Instagram size={20} />
-              </Link>
-              <Link
-                href="https://www.facebook.com/p/Blossom-Dental-Nicaragua-100090086269090/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-gray-700 hover:text-white transition-colors"
-              >
-                <Facebook size={20} />
-              </Link>
-            </div>
           </div>
 
           {/* Quick Links */}
@@ -107,6 +89,39 @@ export function Footer() {
               <li className="flex justify-between">
                 <span>Domingo</span>
                 <span>Cerrado</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Social */}
+          <div>
+            <h3 className="font-semibold text-white mb-4">Síguenos</h3>
+            <ul className="space-y-3">
+              <li>
+                <Link
+                  href="https://www.instagram.com/blossomdental.ni/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 text-gray-400 hover:text-white text-sm transition-colors group"
+                >
+                  <div className="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center group-hover:bg-gray-700 transition-colors">
+                    <Instagram size={16} />
+                  </div>
+                  <span>Instagram</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="https://www.facebook.com/p/Blossom-Dental-Nicaragua-100090086269090/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 text-gray-400 hover:text-white text-sm transition-colors group"
+                >
+                  <div className="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center group-hover:bg-gray-700 transition-colors">
+                    <Facebook size={16} />
+                  </div>
+                  <span>Facebook</span>
+                </Link>
               </li>
             </ul>
           </div>
