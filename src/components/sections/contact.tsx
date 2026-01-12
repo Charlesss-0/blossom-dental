@@ -33,7 +33,6 @@ export function Contact() {
       description: "Gracias por contactarnos. Te responderemos pronto.",
     });
 
-    // Reset form
     (e.target as HTMLFormElement).reset();
   };
 
@@ -142,6 +141,7 @@ export function Contact() {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
+                title="Ubicación de Clínica Blossom Dental en Google Maps"
               ></iframe>
             </div>
           </FadeIn>

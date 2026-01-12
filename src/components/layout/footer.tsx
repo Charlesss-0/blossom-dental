@@ -19,7 +19,7 @@ export function Footer() {
                 className="h-12 w-auto object-contain rounded-full border border-gray-800"
               />
             </Link>
-            <p className="text-gray-400 text-sm leading-relaxed mb-6">
+            <p className="text-gray-300 text-sm leading-relaxed mb-6">
               Experimenta el cuidado dental de vanguardia en un ambiente
               relajante diseñado para tu comodidad.
             </p>
@@ -125,7 +125,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+        <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-400">
           <p>
             &copy; {new Date().getFullYear()} Blossom Dental. Todos los derechos
             reservados.

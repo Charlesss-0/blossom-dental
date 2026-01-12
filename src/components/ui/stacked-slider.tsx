@@ -70,6 +70,7 @@ export function StackedSlider({ images, className }: StackedSliderProps) {
           onClick={prevSlide}
           className="bg-white/90 backdrop-blur-sm hover:bg-white shadow-lg"
           type="button"
+          aria-label="Previous image"
         >
           <ChevronLeft className="h-4 w-4" />
         </Button>
@@ -79,6 +80,7 @@ export function StackedSlider({ images, className }: StackedSliderProps) {
           onClick={nextSlide}
           className="bg-white/90 backdrop-blur-sm hover:bg-white shadow-lg"
           type="button"
+          aria-label="Next image"
         >
           <ChevronRight className="h-4 w-4" />
         </Button>
