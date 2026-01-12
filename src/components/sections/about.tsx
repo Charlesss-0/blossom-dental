@@ -1,6 +1,7 @@
 import { FadeIn } from "@/components/ui/fade-in";
-import Link from "next/link";
 import { StackedSlider } from "@/components/ui/stacked-slider";
+import { BookingModal } from "@/components/booking/booking-modal";
+import { Button } from "@/components/ui/button";
 
 const clinicImages = [
   "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2000&auto=format&fit=crop",
@@ -12,7 +13,7 @@ const clinicImages = [
 
 export function About() {
   return (
-    <section id="about" className="py-24 bg-white relative overflow-hidden">
+    <section id="about" className="py-24 bg-gray-50 relative overflow-hidden">
       <div className="container mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <FadeIn className="relative">
@@ -44,12 +45,16 @@ export function About() {
             </div>
 
             <div className="mt-10">
-              <Link
-                href="#team"
-                className="inline-flex items-center text-xl font-serif text-gray-900 underline-offset-4 hover:text-gray-600 hover:underline transition-all"
-              >
-                Conoce a nuestro equipo &rarr;
-              </Link>
+              <BookingModal
+                trigger={
+                  <Button
+                    size="lg"
+                    className="h-12 px-8 rounded-full text-base bg-gray-900 text-white hover:bg-black transition-all"
+                  >
+                    Agendar Cita
+                  </Button>
+                }
+              />
             </div>
           </FadeIn>
         </div>

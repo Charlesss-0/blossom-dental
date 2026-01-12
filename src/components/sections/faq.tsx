@@ -52,7 +52,7 @@ const faqs = [
 
 export function FAQ() {
   return (
-    <section id="faq" className="py-24 bg-white">
+    <section id="faq" className="py-24 bg-gray-50">
       <div className="container mx-auto px-6 md:px-12">
         <FadeIn className="text-center max-w-2xl mx-auto mb-16">
           <span className="text-sm font-semibold tracking-widest text-gray-400 uppercase mb-4 block">

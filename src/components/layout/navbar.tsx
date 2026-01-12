@@ -77,7 +77,11 @@ export function Navbar() {
         <div className="md:hidden">
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="text-gray-900">
+              <Button
+                variant="ghost"
+                size="icon"
+                className={cn("text-gray-900 transition-colors")}
+              >
                 <Menu size={24} />
               </Button>
             </SheetTrigger>
@@ -130,7 +134,7 @@ export function Navbar() {
                         href="https://wa.me/50557925341?text=Hola,%20me%20gustar%C3%ADa%20agendar%20una%20cita."
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-gray-500 hover:text-gray-900 text-sm transition-colors"
+                        className="text-gray-500 hover:text-gray-900 text-sm transition-colors underline-offset-2 underline"
                       >
                         WhatsApp: 5792 5341
                       </a>

@@ -29,7 +29,7 @@ const team = [
 
 export function Team() {
   return (
-    <section id="team" className="py-24 bg-gray-50">
+    <section id="team" className="py-24 bg-gray-100">
       <div className="container mx-auto px-6 md:px-12">
         <FadeIn>
           <div className="text-center max-w-2xl mx-auto mb-16">

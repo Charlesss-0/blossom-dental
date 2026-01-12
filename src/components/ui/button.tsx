@@ -53,7 +53,6 @@ function Button({
       data-slot="button"
       data-variant={variant}
       data-size={size}
-      suppressHydrationWarning={true}
       className={cn(buttonVariants({ variant, size, className }))}
       {...props}
     />

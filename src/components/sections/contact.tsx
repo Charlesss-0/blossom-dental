@@ -37,7 +37,7 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 bg-white">
+    <section id="contact" className="py-24 bg-gray-50">
       <div className="container mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           <FadeIn>
@@ -49,7 +49,7 @@ export function Contact() {
             </h2>
             <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
+                <div className="space-y-2 md:col-span-2">
                   <label
                     htmlFor="contact-name"
                     className="text-sm font-medium text-gray-700"
@@ -63,7 +63,7 @@ export function Contact() {
                     required
                   />
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-2 col-span-1">
                   <label
                     htmlFor="contact-phone"
                     className="text-sm font-medium text-gray-700"
@@ -74,35 +74,37 @@ export function Contact() {
                     id="contact-phone"
                     type="tel"
                     placeholder="Tu número de teléfono"
-                    className="bg-gray-50 border-gray-200"
+                    className="bg-gray-50 border-gray-200 w-full"
                     required
                   />
                 </div>
-              </div>
-              <div className="space-y-2">
-                <label
-                  htmlFor="contact-service"
-                  className="text-sm font-medium text-gray-700"
-                >
-                  Servicio de interés
-                </label>
-                <Select>
-                  <SelectTrigger
-                    id="contact-service"
-                    className="bg-gray-50 border-gray-200"
+                <div className="space-y-2 md:col-span-1">
+                  <label
+                    htmlFor="contact-service"
+                    className="text-sm font-medium text-gray-700"
                   >
-                    <SelectValue placeholder="Selecciona un servicio" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="general">Odontología General</SelectItem>
-                    <SelectItem value="ortodoncia">Ortodoncia</SelectItem>
-                    <SelectItem value="endodoncia">Endodoncia</SelectItem>
-                    <SelectItem value="periodoncia">Periodoncia</SelectItem>
-                    <SelectItem value="cirugia">Cirugía</SelectItem>
-                    <SelectItem value="implantes">Implantes</SelectItem>
-                    <SelectItem value="otro">Otro</SelectItem>
-                  </SelectContent>
-                </Select>
+                    Servicio de interés
+                  </label>
+                  <Select>
+                    <SelectTrigger
+                      id="contact-service"
+                      className="bg-gray-50 border-gray-200 w-full"
+                    >
+                      <SelectValue placeholder="Selecciona un servicio" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="general">
+                        Odontología General
+                      </SelectItem>
+                      <SelectItem value="ortodoncia">Ortodoncia</SelectItem>
+                      <SelectItem value="endodoncia">Endodoncia</SelectItem>
+                      <SelectItem value="periodoncia">Periodoncia</SelectItem>
+                      <SelectItem value="cirugia">Cirugía</SelectItem>
+                      <SelectItem value="implantes">Implantes</SelectItem>
+                      <SelectItem value="otro">Otro</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
               <div className="space-y-2">
                 <label
