@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Select,
   SelectContent,
@@ -10,8 +12,31 @@ import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/ui/fade-in";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { toast } from "sonner";
+import { useState } from "react";
 
 export function Contact() {
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+
+    toast.message("Enviando tu mensaje...", {
+      description: "Por favor espera mientras procesamos tu solicitud.",
+    });
+
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
+    setLoading(false);
+    toast.success("¡Mensaje Enviado!", {
+      description: "Gracias por contactarnos. Te responderemos pronto.",
+    });
+
+    // Reset form
+    (e.target as HTMLFormElement).reset();
+  };
+
   return (
     <section id="contact" className="py-24 bg-white">
       <div className="container mx-auto px-6 md:px-12">
@@ -23,7 +48,7 @@ export function Contact() {
             <h2 className="text-4xl font-serif text-gray-900 mb-8">
               Nos encantaría saber de ti
             </h2>
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label
@@ -36,6 +61,7 @@ export function Contact() {
                     id="contact-name"
                     placeholder="Tu nombre"
                     className="bg-gray-50 border-gray-200"
+                    required
                   />
                 </div>
                 <div className="space-y-2">
@@ -50,6 +76,7 @@ export function Contact() {
                     type="tel"
                     placeholder="Tu número de teléfono"
                     className="bg-gray-50 border-gray-200"
+                    required
                   />
                 </div>
               </div>
@@ -89,13 +116,15 @@ export function Contact() {
                   id="contact-message"
                   placeholder="¿Cómo podemos ayudarte?"
                   className="min-h-37.5 bg-gray-50 border-gray-200"
+                  required
                 />
               </div>
               <Button
-                type="button"
+                type="submit"
+                disabled={loading}
                 className="w-full md:w-auto px-8 py-6 rounded-full bg-gray-900 text-white hover:bg-black"
               >
-                Enviar Mensaje
+                {loading ? "Enviando..." : "Enviar Mensaje"}
               </Button>
             </form>
           </FadeIn>

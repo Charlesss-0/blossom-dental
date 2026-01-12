@@ -1,5 +1,14 @@
 import { FadeIn } from "@/components/ui/fade-in";
+import { StackedSlider } from "@/components/ui/stacked-slider";
 import Link from "next/link";
+
+const clinicImages = [
+  "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2000&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2000&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?q=80&w=2000&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1598531228433-d9f0cb960816?q=80&w=2000&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=2000&auto=format&fit=crop",
+];
 
 export function About() {
   return (
@@ -7,15 +16,7 @@ export function About() {
       <div className="container mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <FadeIn className="relative">
-            <div className="aspect-4/5 bg-gray-100 rounded-2xl overflow-hidden relative">
-              <div
-                className="absolute inset-0 bg-cover bg-center"
-                style={{
-                  backgroundImage:
-                    "url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2000&auto=format&fit=crop')",
-                }}
-              />
-            </div>
+            <StackedSlider images={clinicImages} />
             <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-gray-50 rounded-full z-[-1]" />
           </FadeIn>
 
