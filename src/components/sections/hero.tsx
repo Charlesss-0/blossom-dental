@@ -66,29 +66,6 @@ export function Hero() {
           </Button>
         </motion.div>
       </div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 1 }}
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
-      >
-        <Link href="#services">
-          <div className="border-2 border-neutral-200 rounded-4xl w-6.5 h-9.5 relative">
-            <motion.div
-              className="absolute h-1.75 w-0.5 bg-white rounded-lg top-1.5 left-[50%] translate-x-[-50%]"
-              initial={{ y: 0, opacity: 1 }}
-              animate={{ y: 5, opacity: 0 }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                repeatType: "loop",
-                ease: "easeInOut",
-              }}
-            />
-          </div>
-        </Link>
-      </motion.div>
     </section>
   );
 }
