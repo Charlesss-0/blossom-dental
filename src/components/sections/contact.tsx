@@ -1,7 +1,3 @@
-import { Button } from "@/components/ui/button";
-import { FadeIn } from "@/components/ui/fade-in";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
@@ -10,12 +6,16 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+import { Button } from "@/components/ui/button";
+import { FadeIn } from "@/components/ui/fade-in";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+
 export function Contact() {
   return (
     <section id="contact" className="py-24 bg-white">
       <div className="container mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          {/* Contact Form */}
           <FadeIn>
             <span className="text-sm font-semibold tracking-widest text-gray-400 uppercase mb-4 block">
               Contáctanos
@@ -100,12 +100,10 @@ export function Contact() {
             </form>
           </FadeIn>
 
-          {/* Map / Info */}
           <FadeIn
             delay={0.2}
             className="relative h-full min-h-100 bg-gray-100 rounded-2xl overflow-hidden"
           >
-            {/* Google Maps Embed */}
             <div className="absolute inset-0 bg-gray-200">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15582.0123456789!2d-86.2584755!3d12.1207218!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f7155f5a049621d%3A0xe41c57f55afbf2ea!2sCl%C3%ADnica+Blossom+Dental+-+ortodoncia!5e0!3m2!1ses!2sni!4v1700000000000!5m2!1ses!2sni"

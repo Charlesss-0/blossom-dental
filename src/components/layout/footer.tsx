@@ -9,7 +9,6 @@ export function Footer() {
     <footer className="bg-gray-900 pt-16 pb-8 border-t border-gray-800">
       <div className="container mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-12 mb-12">
-          {/* Brand */}
           <div className="md:col-span-1">
             <Link href="/" className="mb-4 block">
               <Image
@@ -26,7 +25,6 @@ export function Footer() {
             </p>
           </div>
 
-          {/* Quick Links */}
           <div>
             <h3 className="font-semibold text-white mb-4">Enlaces Rápidos</h3>
             <ul className="space-y-3">
@@ -58,7 +56,6 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
             <h3 className="font-semibold text-white mb-4">Contacto</h3>
             <div className="text-sm text-gray-400 space-y-4">
@@ -77,7 +74,6 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Hours */}
           <div>
             <h3 className="font-semibold text-white mb-4">Horario</h3>
             <ul className="space-y-3 text-sm text-gray-400">
@@ -96,7 +92,6 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Social */}
           <div>
             <h3 className="font-semibold text-white mb-4">Síguenos</h3>
             <ul className="space-y-3">

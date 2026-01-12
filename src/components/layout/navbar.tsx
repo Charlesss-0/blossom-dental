@@ -45,7 +45,6 @@ export function Navbar() {
       )}
     >
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
-        {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <Image
             src="/logo.jpg"
@@ -56,7 +55,6 @@ export function Navbar() {
           />
         </Link>
 
-        {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <Link
@@ -76,7 +74,6 @@ export function Navbar() {
           />
         </div>
 
-        {/* Mobile Menu Sidebar */}
         <div className="md:hidden">
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>

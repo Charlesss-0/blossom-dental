@@ -5,6 +5,7 @@ import { Hero } from "@/components/sections/hero";
 import { Navbar } from "@/components/layout/navbar";
 import { Services } from "@/components/sections/services";
 import { Team } from "@/components/sections/team";
+import { FAQ } from "@/components/sections/faq";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <Services />
       <About />
       <Team />
+      <FAQ />
       <Contact />
       <Footer />
     </main>

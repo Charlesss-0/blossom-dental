@@ -45,12 +45,10 @@ export function BookingModal({ trigger }: BookingModalProps) {
     e.preventDefault();
     setLoading(true);
 
-    // Provide immediate feedback to the user
     toast.message("Agendando tu cita...", {
       description: "Por favor espera mientras confirmamos disponibilidad.",
     });
 
-    // Simulate backend delay
     await new Promise((resolve) => setTimeout(resolve, 2000));
 
     setLoading(false);

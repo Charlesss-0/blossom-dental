@@ -6,10 +6,8 @@ export function About() {
     <section id="about" className="py-24 bg-white relative overflow-hidden">
       <div className="container mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          {/* Image Side */}
           <FadeIn className="relative">
             <div className="aspect-4/5 bg-gray-100 rounded-2xl overflow-hidden relative">
-              {/* Placeholder for now, or actual image */}
               <div
                 className="absolute inset-0 bg-cover bg-center"
                 style={{
@@ -18,11 +16,9 @@ export function About() {
                 }}
               />
             </div>
-            {/* Decorative element */}
             <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-gray-50 rounded-full z-[-1]" />
           </FadeIn>
 
-          {/* Text Side */}
           <FadeIn delay={0.2}>
             <span className="text-sm font-semibold tracking-widest text-gray-400 uppercase mb-4 block">
               Nuestra Filosofía
