@@ -89,7 +89,7 @@ export function Services() {
                   >
                     <button
                       onClick={() => setActiveIndex(index)}
-                      className="w-full flex items-center justify-between text-left group"
+                      className="w-full flex items-center justify-between text-left group cursor-pointer"
                     >
                       <h3
                         className={`text-xl md:text-2xl font-serif font-medium transition-colors duration-300 ${
