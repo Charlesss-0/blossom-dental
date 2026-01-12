@@ -1,11 +1,11 @@
 import { FadeIn } from "@/components/ui/fade-in";
-import { StackedSlider } from "@/components/ui/stacked-slider";
 import Link from "next/link";
+import { StackedSlider } from "@/components/ui/stacked-slider";
 
 const clinicImages = [
   "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2000&auto=format&fit=crop",
   "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=2000&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?q=80&w=2000&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1644353740797-b85ffb378b3a?q=80&w=800&auto=format&fit=crop",
   "https://images.unsplash.com/photo-1598531228433-d9f0cb960816?q=80&w=2000&auto=format&fit=crop",
   "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=2000&auto=format&fit=crop",
 ];
