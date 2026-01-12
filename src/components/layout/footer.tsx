@@ -47,7 +47,7 @@ export function Footer() {
               <li>
                 <BookingModal
                   trigger={
-                    <button className="text-gray-400 hover:text-white text-sm transition-colors text-left">
+                    <button className="text-gray-400 hover:text-white text-sm transition-colors text-left cursor-pointer">
                       Agendar Cita
                     </button>
                   }
@@ -67,7 +67,7 @@ export function Footer() {
                 href="https://wa.me/50557925341?text=Hola,%20me%20gustar%C3%ADa%20agendar%20una%20cita."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white text-sm transition-colors block mt-2"
+                className="text-gray-400 hover:text-white text-sm transition-colors block mt-2 underline-offset-2 underline"
               >
                 WhatsApp: 5792 5341
               </a>
@@ -105,7 +105,9 @@ export function Footer() {
                   <div className="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center group-hover:bg-gray-700 transition-colors">
                     <Instagram size={16} />
                   </div>
-                  <span>Instagram</span>
+                  <span className="underline-offset-2 underline">
+                    Instagram
+                  </span>
                 </Link>
               </li>
               <li>
@@ -118,7 +120,7 @@ export function Footer() {
                   <div className="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center group-hover:bg-gray-700 transition-colors">
                     <Facebook size={16} />
                   </div>
-                  <span>Facebook</span>
+                  <span className="underline-offset-2 underline">Facebook</span>
                 </Link>
               </li>
             </ul>
