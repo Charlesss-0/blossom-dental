@@ -7,33 +7,88 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  formatPhoneNumber,
+  validateEmail,
+  validatePhone,
+} from "@/lib/form-utils";
 
 import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/ui/fade-in";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { cn } from "@/lib/utils";
+import { submitForm } from "@/actions/submit-form";
 import { toast } from "sonner";
 import { useState } from "react";
 
 export function Contact() {
   const [loading, setLoading] = useState(false);
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [service, setService] = useState("");
+  const [message, setMessage] = useState("");
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const formatted = formatPhoneNumber(e.target.value);
+    setPhone(formatted);
+    if (errors.phone) {
+      setErrors((prev) => ({ ...prev, phone: "" }));
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const newErrors: { [key: string]: string } = {};
+
+    if (!name.trim()) newErrors.name = "El nombre es requerido";
+    if (!phone.trim()) {
+      newErrors.phone = "El teléfono es requerido";
+    } else if (!validatePhone(phone)) {
+      newErrors.phone = "El teléfono debe tener 8 dígitos";
+    }
+    if (!service) newErrors.service = "El servicio es requerido";
+    if (!message.trim()) newErrors.message = "El mensaje es requerido";
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      toast.error("Por favor revisa los errores en el formulario.");
+      return;
+    }
+
     setLoading(true);
+    setErrors({});
 
     toast.message("Enviando tu mensaje...", {
       description: "Por favor espera mientras procesamos tu solicitud.",
     });
 
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    try {
+      await submitForm({
+        name,
+        phone,
+        service,
+        message,
+      });
 
-    setLoading(false);
-    toast.success("¡Mensaje Enviado!", {
-      description: "Gracias por contactarnos. Te responderemos pronto.",
-    });
+      toast.success("¡Mensaje Enviado!", {
+        description: "Gracias por contactarnos. Te responderemos pronto.",
+      });
 
-    (e.target as HTMLFormElement).reset();
+      setName("");
+      setPhone("");
+      setService("");
+      setMessage("");
+    } catch (error: unknown) {
+      console.error("Submission error:", error);
+      toast.error("Error al enviar el mensaje.", {
+        description:
+          "Hubo un problema al enviar tu mensaje. Por favor intenta de nuevo.",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -54,41 +109,70 @@ export function Contact() {
                     htmlFor="contact-name"
                     className="text-sm font-medium text-gray-700"
                   >
-                    Nombre
+                    Nombre <span className="text-red-500">*</span>
                   </label>
                   <Input
                     id="contact-name"
                     placeholder="Tu nombre"
-                    className="bg-gray-50 border-gray-200"
-                    required
+                    className={cn(
+                      "bg-gray-50 border-gray-200",
+                      errors.name && "border-red-500 focus-visible:ring-red-500"
+                    )}
+                    value={name}
+                    onChange={(e) => {
+                      setName(e.target.value);
+                      if (errors.name)
+                        setErrors((prev) => ({ ...prev, name: "" }));
+                    }}
                   />
+                  {errors.name && (
+                    <p className="text-xs text-red-500">{errors.name}</p>
+                  )}
                 </div>
                 <div className="space-y-2 col-span-1">
                   <label
                     htmlFor="contact-phone"
                     className="text-sm font-medium text-gray-700"
                   >
-                    Teléfono
+                    Teléfono <span className="text-red-500">*</span>
                   </label>
                   <Input
                     id="contact-phone"
                     type="tel"
                     placeholder="Tu número de teléfono"
-                    className="bg-gray-50 border-gray-200 w-full"
-                    required
+                    className={cn(
+                      "bg-gray-50 border-gray-200 w-full",
+                      errors.phone &&
+                        "border-red-500 focus-visible:ring-red-500"
+                    )}
+                    value={phone}
+                    onChange={handlePhoneChange}
                   />
+                  {errors.phone && (
+                    <p className="text-xs text-red-500">{errors.phone}</p>
+                  )}
                 </div>
                 <div className="space-y-2 md:col-span-1">
                   <label
                     htmlFor="contact-service"
                     className="text-sm font-medium text-gray-700"
                   >
-                    Servicio de interés
+                    Servicio de interés <span className="text-red-500">*</span>
                   </label>
-                  <Select>
+                  <Select
+                    value={service}
+                    onValueChange={(v) => {
+                      setService(v);
+                      if (errors.service)
+                        setErrors((prev) => ({ ...prev, service: "" }));
+                    }}
+                  >
                     <SelectTrigger
                       id="contact-service"
-                      className="bg-gray-50 border-gray-200 w-full"
+                      className={cn(
+                        "bg-gray-50 border-gray-200 w-full",
+                        errors.service && "border-red-500 focus:ring-red-500"
+                      )}
                     >
                       <SelectValue placeholder="Selecciona un servicio" />
                     </SelectTrigger>
@@ -104,6 +188,9 @@ export function Contact() {
                       <SelectItem value="otro">Otro</SelectItem>
                     </SelectContent>
                   </Select>
+                  {errors.service && (
+                    <p className="text-xs text-red-500">{errors.service}</p>
+                  )}
                 </div>
               </div>
               <div className="space-y-2">
@@ -111,19 +198,31 @@ export function Contact() {
                   htmlFor="contact-message"
                   className="text-sm font-medium text-gray-700"
                 >
-                  Mensaje
+                  Mensaje <span className="text-red-500">*</span>
                 </label>
                 <Textarea
                   id="contact-message"
                   placeholder="¿Cómo podemos ayudarte?"
-                  className="min-h-37.5 bg-gray-50 border-gray-200"
-                  required
+                  className={cn(
+                    "min-h-37.5 bg-gray-50 border-gray-200",
+                    errors.message &&
+                      "border-red-500 focus-visible:ring-red-500"
+                  )}
+                  value={message}
+                  onChange={(e) => {
+                    setMessage(e.target.value);
+                    if (errors.message)
+                      setErrors((prev) => ({ ...prev, message: "" }));
+                  }}
                 />
+                {errors.message && (
+                  <p className="text-xs text-red-500">{errors.message}</p>
+                )}
               </div>
               <Button
                 type="submit"
                 disabled={loading}
-                className="w-full md:w-auto px-8 py-6 rounded-full bg-gray-900 text-white hover:bg-black"
+                className="w-full md:w-auto px-8 py-6 rounded-full bg-gray-900 text-white hover:bg-black cursor-pointer"
               >
                 {loading ? "Enviando..." : "Enviar Mensaje"}
               </Button>
