@@ -138,7 +138,7 @@ export function Services() {
             </div>
 
             <AnimatePresence mode="wait">
-              <div className="relative aspect-square md:aspect-4/5 rounded-3xl overflow-hidden shadow-xl lg:shadow-2xl">
+              <div className="relative aspect-square md:aspect-4/5 rounded-3xl overflow-hidden shadow-xl lg:shadow-2xl hidden md:block">
                 <motion.div
                   key={activeIndex}
                   initial={{ opacity: 0, scale: 1.05 }}

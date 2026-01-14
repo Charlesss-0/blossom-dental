@@ -98,7 +98,7 @@ export function Team() {
                   <p className="text-blue-600 font-medium uppercase tracking-widest text-sm">
                     {currentMember.role}
                   </p>
-                  <p className="text-gray-600 text-lg leading-relaxed max-w-xl">
+                  <p className="text-gray-600 text-lg leading-relaxed max-w-xl hidden md:block">
                     {currentMember.bio}
                   </p>
 
