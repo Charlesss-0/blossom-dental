@@ -4,6 +4,7 @@ import { Inter, Playfair_Display } from "next/font/google";
 
 import { GoogleTagManager } from "@next/third-parties/google";
 import type { Metadata } from "next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({
@@ -37,6 +38,7 @@ export default function RootLayout({
         className={`${inter.variable} ${playfair.variable} antialiased font-sans`}
       >
         {children}
+        <SpeedInsights />
         <Toaster />
       </body>
     </html>
