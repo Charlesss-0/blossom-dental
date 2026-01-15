@@ -89,13 +89,16 @@ export function BookingModal({ trigger }: BookingModalProps) {
     });
 
     try {
-      await submitForm({
-        name,
-        phone,
-        email,
-        date,
-        time,
-      });
+      await submitForm(
+        {
+          name,
+          phone,
+          email,
+          date,
+          time,
+        },
+        "booking"
+      );
 
       toast.success("¡Solicitud Enviada!", {
         description: "Te contactaremos pronto para confirmar tu horario.",

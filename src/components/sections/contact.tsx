@@ -65,12 +65,15 @@ export function Contact() {
     });
 
     try {
-      await submitForm({
-        name,
-        phone,
-        service,
-        message,
-      });
+      await submitForm(
+        {
+          name,
+          phone,
+          service,
+          message,
+        },
+        "contact"
+      );
 
       toast.success("¡Mensaje Enviado!", {
         description: "Gracias por contactarnos. Te responderemos pronto.",

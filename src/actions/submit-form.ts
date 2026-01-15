@@ -12,22 +12,43 @@ interface SubmitFormAction {
   message?: string;
 }
 
-export async function submitForm(data: SubmitFormAction) {
-  const scriptUrl = process.env.GOOGLE_APPS_SCRIPT_URL as string;
+export async function submitForm(
+  data: SubmitFormAction,
+  form: "contact" | "booking"
+) {
+  const { name, phone, email, date, time, service, message } = data;
+
+  if (!name || !phone) {
+    throw new Error("Missing required fields");
+  }
+
+  let scriptUrl = "";
+  const formData = new URLSearchParams();
+
+  formData.append("nombre", name);
+  formData.append("teléfono", phone);
+
+  if (form === "contact") {
+    scriptUrl = process.env.LEADS_URL as string;
+    formData.append("servicio", service || "");
+    formData.append("mensaje", message || "");
+  }
+
+  if (form === "booking") {
+    scriptUrl = process.env.BOOKING_URL as string;
+    formData.append("email", email || "");
+    formData.append("fecha", date ? format(date, "dd/MM/yyyy") : "");
+    formData.append("hora", time || "");
+  }
 
   if (!scriptUrl) {
     throw new Error("Env variable is not set");
   }
 
-  const formData = new URLSearchParams();
-  formData.append("nombre", data.name);
-  formData.append("teléfono", data.phone);
-  formData.append("email", data.email || "");
-  formData.append("fecha", data.date ? format(data.date, "dd/MM/yyyy") : "");
-  formData.append("hora", data.time || "");
-  formData.append("servicio", data.service || "");
-  formData.append("mensaje", data.message || "");
+  await postForm(scriptUrl, formData);
+}
 
+async function postForm(scriptUrl: string, formData: URLSearchParams) {
   await fetch(scriptUrl, {
     method: "POST",
     headers: {
