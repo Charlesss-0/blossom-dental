@@ -34,10 +34,10 @@ export const metadata: Metadata = {
       "Experimenta el cuidado dental premium y gentil en Blossom Dental. Agenda tu cita hoy.",
     images: [
       {
-        url: "/dentist-explaining-dental-xray-to-child-patient.jpg",
+        url: "/dentista-explicando-radiografia-dental-a-paciente-infantil.jpg",
         width: 1200,
         height: 630,
-        alt: "Dentist explaining a dental X-ray to a child patient during a consultation in a modern dental clinic",
+        alt: "Dentista explicando una radiografía dental a un paciente infantil durante una consulta en una clínica dental moderna",
       },
     ],
   },
