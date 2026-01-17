@@ -24,6 +24,23 @@ export const metadata: Metadata = {
   verification: {
     google: "zkagBrTOB5Gf1AY9cA_vWbqZt1QpClKDJ_z4eq4z7hU",
   },
+  openGraph: {
+    type: "website",
+    locale: "es_ES",
+    url: "https://blossom-dental.vercel.app/",
+    siteName: "Blossom Dental",
+    title: "Blossom Dental - Odontología General y Ortodoncia",
+    description:
+      "Experimenta el cuidado dental premium y gentil en Blossom Dental. Agenda tu cita hoy.",
+    images: [
+      {
+        url: "/dentist-explaining-dental-xray-to-child-patient.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Dentist explaining a dental X-ray to a child patient during a consultation in a modern dental clinic",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
