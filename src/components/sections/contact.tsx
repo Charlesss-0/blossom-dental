@@ -7,11 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  formatPhoneNumber,
-  validateEmail,
-  validatePhone,
-} from "@/lib/form-utils";
+import { formatPhoneNumber, validatePhone } from "@/lib/form-utils";
 
 import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/ui/fade-in";
