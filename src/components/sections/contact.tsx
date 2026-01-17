@@ -42,14 +42,24 @@ export function Contact() {
     e.preventDefault();
     const newErrors: { [key: string]: string } = {};
 
-    if (!name.trim()) newErrors.name = "El nombre es requerido";
+    if (!name.trim()) {
+      newErrors.name = "El nombre es requerido";
+    } else if (name.trim().length < 3) {
+      newErrors.name = "El nombre debe tener al menos 3 caracteres";
+    }
+
     if (!phone.trim()) {
       newErrors.phone = "El teléfono es requerido";
     } else if (!validatePhone(phone)) {
-      newErrors.phone = "El teléfono debe tener 8 dígitos";
+      newErrors.phone =
+        "El teléfono debe tener 8 dígitos y no empezar con 0, 1, 3 o 4";
     }
     if (!service) newErrors.service = "El servicio es requerido";
-    if (!message.trim()) newErrors.message = "El mensaje es requerido";
+    if (!message.trim()) {
+      newErrors.message = "El mensaje es requerido";
+    } else if (message.trim().length < 10) {
+      newErrors.message = "El mensaje debe tener al menos 40 caracteres";
+    }
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -127,6 +137,7 @@ export function Contact() {
                       if (errors.name)
                         setErrors((prev) => ({ ...prev, name: "" }));
                     }}
+                    maxLength={40}
                   />
                   {errors.name && (
                     <p className="text-xs text-red-500">{errors.name}</p>
@@ -137,12 +148,14 @@ export function Contact() {
                     htmlFor="contact-phone"
                     className="text-sm font-medium text-gray-700"
                   >
-                    Teléfono <span className="text-red-500">*</span>
+                    <span>Teléfono</span>{" "}
+                    <span className="text-red-500">*</span>
                   </label>
                   <Input
                     id="contact-phone"
                     type="tel"
                     placeholder="Tu número de teléfono"
+                    translate="yes"
                     className={cn(
                       "bg-gray-50 border-gray-200 w-full",
                       errors.phone &&
@@ -160,7 +173,8 @@ export function Contact() {
                     htmlFor="contact-service"
                     className="text-sm font-medium text-gray-700"
                   >
-                    Servicio de interés <span className="text-red-500">*</span>
+                    <span>Servicio de interés</span>{" "}
+                    <span className="text-red-500">*</span>
                   </label>
                   <Select
                     value={service}
@@ -201,11 +215,12 @@ export function Contact() {
                   htmlFor="contact-message"
                   className="text-sm font-medium text-gray-700"
                 >
-                  Mensaje <span className="text-red-500">*</span>
+                  <span>Mensaje</span> <span className="text-red-500">*</span>
                 </label>
                 <Textarea
                   id="contact-message"
                   placeholder="¿Cómo podemos ayudarte?"
+                  translate="yes"
                   className={cn(
                     "min-h-37.5 bg-gray-50 border-gray-200",
                     errors.message &&
@@ -217,6 +232,8 @@ export function Contact() {
                     if (errors.message)
                       setErrors((prev) => ({ ...prev, message: "" }));
                   }}
+                  minLength={5}
+                  maxLength={300}
                 />
                 {errors.message && (
                   <p className="text-xs text-red-500">{errors.message}</p>
