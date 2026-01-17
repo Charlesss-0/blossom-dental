@@ -205,9 +205,11 @@ export function BookingModal({ trigger }: BookingModalProps) {
       newErrors.email = "El correo electrónico no es válido";
     if (!phone.trim()) {
       newErrors.phone = "El teléfono es requerido";
-    } else if (!validatePhone(phone)) {
-      newErrors.phone =
-        "El teléfono debe tener 8 dígitos y no empezar con 0, 1, 3 o 4";
+    } else {
+      const phoneValidation = validatePhone(phone);
+      if (!phoneValidation.isValid) {
+        newErrors.phone = `El teléfono ${phoneValidation.errors.join(" y ")}`;
+      }
     }
     if (!date) newErrors.date = "La fecha es requerida";
     if (!time) newErrors.time = "La hora es requerida";
@@ -234,7 +236,7 @@ export function BookingModal({ trigger }: BookingModalProps) {
           date,
           time,
         },
-        "booking"
+        "booking",
       );
 
       toast.success("¡Solicitud Enviada!", {
@@ -287,7 +289,7 @@ export function BookingModal({ trigger }: BookingModalProps) {
               }}
               maxLength={40}
               className={cn(
-                errors.name && "border-red-500 focus-visible:ring-red-500"
+                errors.name && "border-red-500 focus-visible:ring-red-500",
               )}
             />
             {errors.name && (
@@ -308,7 +310,7 @@ export function BookingModal({ trigger }: BookingModalProps) {
               }}
               maxLength={40}
               className={cn(
-                errors.email && "border-red-500 focus-visible:ring-red-500"
+                errors.email && "border-red-500 focus-visible:ring-red-500",
               )}
             />
             {errors.email && (
@@ -328,7 +330,7 @@ export function BookingModal({ trigger }: BookingModalProps) {
               value={phone}
               onChange={handlePhoneChange}
               className={cn(
-                errors.phone && "border-red-500 focus-visible:ring-red-500"
+                errors.phone && "border-red-500 focus-visible:ring-red-500",
               )}
             />
             {errors.phone && (
@@ -346,7 +348,7 @@ export function BookingModal({ trigger }: BookingModalProps) {
                 onChange={handleDateInputChange}
                 className={cn(
                   "flex-1",
-                  errors.date && "border-red-500 focus-visible:ring-red-500"
+                  errors.date && "border-red-500 focus-visible:ring-red-500",
                 )}
               />
               <Popover>
@@ -355,7 +357,7 @@ export function BookingModal({ trigger }: BookingModalProps) {
                     variant="outline"
                     className={cn(
                       "w-10 p-0 hover:bg-transparent",
-                      errors.date && "border-red-500"
+                      errors.date && "border-red-500",
                     )}
                     type="button"
                   >
@@ -410,7 +412,7 @@ export function BookingModal({ trigger }: BookingModalProps) {
                   id="time-dropdown"
                   className={cn(
                     "w-full",
-                    errors.time && "border-red-500 focus:ring-red-500"
+                    errors.time && "border-red-500 focus:ring-red-500",
                   )}
                 >
                   <SelectValue placeholder="Seleccionar de horarios comunes" />

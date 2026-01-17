@@ -46,9 +46,11 @@ export function Contact() {
 
     if (!phone.trim()) {
       newErrors.phone = "El teléfono es requerido";
-    } else if (!validatePhone(phone)) {
-      newErrors.phone =
-        "El teléfono debe tener 8 dígitos y no empezar con 0, 1, 3 o 4";
+    } else {
+      const phoneValidation = validatePhone(phone);
+      if (!phoneValidation.isValid) {
+        newErrors.phone = `El teléfono ${phoneValidation.errors.join(" y ")}`;
+      }
     }
     if (!service) newErrors.service = "El servicio es requerido";
     if (!message.trim()) {
@@ -78,7 +80,7 @@ export function Contact() {
           service,
           message,
         },
-        "contact"
+        "contact",
       );
 
       toast.success("¡Mensaje Enviado!", {
@@ -125,7 +127,8 @@ export function Contact() {
                     placeholder="Tu nombre"
                     className={cn(
                       "bg-gray-50 border-gray-200",
-                      errors.name && "border-red-500 focus-visible:ring-red-500"
+                      errors.name &&
+                        "border-red-500 focus-visible:ring-red-500",
                     )}
                     value={name}
                     onChange={(e) => {
@@ -155,7 +158,7 @@ export function Contact() {
                     className={cn(
                       "bg-gray-50 border-gray-200 w-full",
                       errors.phone &&
-                        "border-red-500 focus-visible:ring-red-500"
+                        "border-red-500 focus-visible:ring-red-500",
                     )}
                     value={phone}
                     onChange={handlePhoneChange}
@@ -184,7 +187,7 @@ export function Contact() {
                       id="contact-service"
                       className={cn(
                         "bg-gray-50 border-gray-200 w-full",
-                        errors.service && "border-red-500 focus:ring-red-500"
+                        errors.service && "border-red-500 focus:ring-red-500",
                       )}
                     >
                       <SelectValue placeholder="Selecciona un servicio" />
@@ -220,7 +223,7 @@ export function Contact() {
                   className={cn(
                     "min-h-37.5 bg-gray-50 border-gray-200",
                     errors.message &&
-                      "border-red-500 focus-visible:ring-red-500"
+                      "border-red-500 focus-visible:ring-red-500",
                   )}
                   value={message}
                   onChange={(e) => {
