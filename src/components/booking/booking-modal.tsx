@@ -240,7 +240,8 @@ export function BookingModal({ trigger }: BookingModalProps) {
       );
 
       toast.success("¡Solicitud Enviada!", {
-        description: "Te contactaremos pronto para confirmar tu horario.",
+        description:
+          "Gracias por solicitar tu cita. Te contactaremos pronto para confirmar tu horario.",
       });
       setOpen(false);
       setName("");
