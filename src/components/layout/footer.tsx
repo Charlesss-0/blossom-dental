@@ -1,8 +1,11 @@
+"use client";
+
 import { Facebook, Instagram } from "lucide-react";
 
 import { BookingModal } from "@/components/booking/booking-modal";
 import Image from "next/image";
 import Link from "next/link";
+import { scrollToSection } from "@/lib/utils";
 
 export function Footer() {
   return (
@@ -32,6 +35,7 @@ export function Footer() {
                 <Link
                   href="#about"
                   className="text-gray-400 hover:text-white text-sm transition-colors"
+                  onClick={(e) => scrollToSection(e, "#about")}
                 >
                   Nosotros
                 </Link>
@@ -40,6 +44,7 @@ export function Footer() {
                 <Link
                   href="#services"
                   className="text-gray-400 hover:text-white text-sm transition-colors"
+                  onClick={(e) => scrollToSection(e, "#services")}
                 >
                   Servicios
                 </Link>
@@ -69,7 +74,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white text-sm transition-colors block mt-2 underline-offset-2 underline"
               >
-                WhatsApp: 5792 5341
+                Contáctanos por WhatsApp
               </a>
             </div>
           </div>

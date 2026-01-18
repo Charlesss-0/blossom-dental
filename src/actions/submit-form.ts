@@ -5,7 +5,6 @@ import { format } from "date-fns/format";
 interface SubmitFormAction {
   name: string;
   phone: string;
-  email?: string;
   date?: Date | null;
   time?: string;
   service?: string;
@@ -14,9 +13,9 @@ interface SubmitFormAction {
 
 export async function submitForm(
   data: SubmitFormAction,
-  form: "contact" | "booking"
+  form: "contact" | "booking",
 ) {
-  const { name, phone, email, date, time, service, message } = data;
+  const { name, phone, date, time, service, message } = data;
 
   if (!name || !phone) {
     throw new Error("Missing required fields");
@@ -36,7 +35,7 @@ export async function submitForm(
 
   if (form === "booking") {
     scriptUrl = process.env.BOOKING_URL as string;
-    formData.append("email", email || "");
+    formData.append("servicio", service || "");
     formData.append("fecha", date ? format(date, "dd/MM/yyyy") : "");
     formData.append("hora", time || "");
   }

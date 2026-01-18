@@ -20,17 +20,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  formatPhoneNumber,
-  validateEmail,
-  validatePhone,
-} from "@/lib/form-utils";
+import { formatPhoneNumber, validatePhone } from "@/lib/form-utils";
 
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { CalendarIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { es } from "date-fns/locale";
 import { format } from "date-fns";
@@ -47,7 +44,8 @@ export function BookingModal({ trigger }: BookingModalProps) {
   const [loading, setLoading] = useState(false);
   const [date, setDate] = useState<Date>();
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [reason, setReason] = useState("");
+  const [customReason, setCustomReason] = useState("");
   const [phone, setPhone] = useState("");
   const [time, setTime] = useState("");
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
@@ -201,8 +199,12 @@ export function BookingModal({ trigger }: BookingModalProps) {
       newErrors.name = "El nombre debe tener al menos 3 caracteres";
     }
 
-    if (email && !validateEmail(email))
-      newErrors.email = "El correo electrónico no es válido";
+    if (!reason) {
+      newErrors.reason = "El motivo es requerido";
+    } else if (reason === "Otro" && !customReason.trim()) {
+      newErrors.customReason = "Por favor especifica el motivo";
+    }
+
     if (!phone.trim()) {
       newErrors.phone = "El teléfono es requerido";
     } else {
@@ -232,7 +234,7 @@ export function BookingModal({ trigger }: BookingModalProps) {
         {
           name,
           phone,
-          email,
+          service: reason === "Otro" ? customReason : reason,
           date,
           time,
         },
@@ -245,7 +247,8 @@ export function BookingModal({ trigger }: BookingModalProps) {
       });
       setOpen(false);
       setName("");
-      setEmail("");
+      setReason("");
+      setCustomReason("");
       setPhone("");
       setDate(undefined);
       setDateInput("");
@@ -298,27 +301,6 @@ export function BookingModal({ trigger }: BookingModalProps) {
             )}
           </div>
           <div className="grid gap-2">
-            <Label htmlFor="email">Email (opcional)</Label>
-            <Input
-              id="email"
-              type="email"
-              placeholder="juan@ejemplo.com"
-              name="email"
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-                if (errors.email) setErrors((prev) => ({ ...prev, email: "" }));
-              }}
-              maxLength={40}
-              className={cn(
-                errors.email && "border-red-500 focus-visible:ring-red-500",
-              )}
-            />
-            {errors.email && (
-              <p className="text-xs text-red-500">{errors.email}</p>
-            )}
-          </div>
-          <div className="grid gap-2">
             <Label htmlFor="phone">
               <span>Teléfono</span> <span className="text-red-500">*</span>
             </Label>
@@ -338,6 +320,69 @@ export function BookingModal({ trigger }: BookingModalProps) {
               <p className="text-xs text-red-500">{errors.phone}</p>
             )}
           </div>
+          <div className="grid gap-2">
+            <Label htmlFor="reason">
+              Motivo de la visita <span className="text-red-500">*</span>
+            </Label>
+            <Select
+              name="reason"
+              value={reason}
+              onValueChange={(v) => {
+                setReason(v);
+                if (errors.reason)
+                  setErrors((prev) => ({ ...prev, reason: "" }));
+              }}
+            >
+              <SelectTrigger
+                id="reason"
+                className={cn(
+                  errors.reason && "border-red-500 focus:ring-red-500",
+                  "w-full cursor-pointer",
+                )}
+              >
+                <SelectValue placeholder="Selecciona el motivo" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Limpieza Dental">Limpieza Dental</SelectItem>
+                <SelectItem value="Ortodoncia">Ortodoncia</SelectItem>
+                <SelectItem value="Endodoncia">Endodoncia</SelectItem>
+                <SelectItem value="Periodoncia">Periodoncia</SelectItem>
+                <SelectItem value="Cirugía">Cirugía</SelectItem>
+                <SelectItem value="Implantes">Implantes</SelectItem>
+                <SelectItem value="Otro">Otro</SelectItem>
+              </SelectContent>
+            </Select>
+
+            {errors.reason && (
+              <p className="text-xs text-red-500">{errors.reason}</p>
+            )}
+
+            {reason === "Otro" && (
+              <div className="w-full">
+                <Label htmlFor="customReason" className="sr-only">
+                  Especificar motivo
+                </Label>
+                <Textarea
+                  id="customReason"
+                  placeholder="Por favor especifica el motivo de tu visita"
+                  value={customReason}
+                  onChange={(e) => {
+                    setCustomReason(e.target.value);
+                    if (errors.customReason)
+                      setErrors((prev) => ({ ...prev, customReason: "" }));
+                  }}
+                  className={cn(
+                    errors.customReason &&
+                      "border-red-500 focus-visible:ring-red-500 mb-2",
+                  )}
+                />
+                {errors.customReason && (
+                  <p className="text-xs text-red-500">{errors.customReason}</p>
+                )}
+              </div>
+            )}
+          </div>
+
           <div className="grid gap-2">
             <Label>
               Fecha Preferida <span className="text-red-500">*</span>

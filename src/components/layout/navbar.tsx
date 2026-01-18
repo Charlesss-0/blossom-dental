@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import { Menu } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, scrollToSection } from "@/lib/utils";
 
 const navLinks = [
   { href: "#about", label: "Nosotros" },
@@ -41,7 +41,7 @@ export function Navbar() {
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
           ? "bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-100 py-4"
-          : "bg-transparent py-6"
+          : "bg-transparent py-6",
       )}
     >
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
@@ -61,6 +61,7 @@ export function Navbar() {
               key={link.label}
               href={link.href}
               className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+              onClick={(e) => scrollToSection(e, link.href)}
             >
               {link.label}
             </Link>
@@ -109,7 +110,10 @@ export function Navbar() {
                       key={link.label}
                       href={link.href}
                       className="text-2xl font-serif font-medium text-gray-900 hover:text-gray-600 transition-colors"
-                      onClick={() => setOpen(false)}
+                      onClick={(e) => {
+                        scrollToSection(e, link.href);
+                        setOpen(false);
+                      }}
                     >
                       {link.label}
                     </Link>
@@ -136,7 +140,7 @@ export function Navbar() {
                         rel="noopener noreferrer"
                         className="text-gray-500 hover:text-gray-900 text-sm transition-colors underline-offset-2 underline"
                       >
-                        WhatsApp: 5792 5341
+                        Contáctanos por WhatsApp
                       </a>
                     </div>
                     <div>

@@ -56,7 +56,7 @@ export function Contact() {
     if (!message.trim()) {
       newErrors.message = "El mensaje es requerido";
     } else if (message.trim().length < 10) {
-      newErrors.message = "El mensaje debe tener al menos 40 caracteres";
+      newErrors.message = "El mensaje debe tener al menos 10 caracteres";
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -231,7 +231,6 @@ export function Contact() {
                     if (errors.message)
                       setErrors((prev) => ({ ...prev, message: "" }));
                   }}
-                  minLength={5}
                   maxLength={300}
                 />
                 {errors.message && (
