@@ -22,7 +22,6 @@ import {
 } from "@/components/ui/select";
 import {
   formatPhoneNumber,
-  formatTimeInput,
   validatePhone,
   validateTime,
 } from "@/lib/form-utils";
@@ -90,45 +89,6 @@ export function BookingModal({ trigger }: BookingModalProps) {
   };
 
   const [dateInput, setDateInput] = useState("");
-
-  const handleTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const input = e.target;
-    const selectionStart = input.selectionStart || 0;
-    const valueBefore = input.value;
-    const digitsBeforeCursor = valueBefore
-      .slice(0, selectionStart)
-      .replace(/\D/g, "").length;
-
-    const formatted = formatTimeInput(input.value);
-    setTime(formatted);
-
-    if (errors.time) {
-      setErrors((prev) => ({ ...prev, time: "" }));
-    }
-
-    requestAnimationFrame(() => {
-      let newPos = 0;
-      let digitCount = 0;
-      for (
-        let i = 0;
-        i < formatted.length && digitCount < digitsBeforeCursor;
-        i++
-      ) {
-        if (/\d/.test(formatted[i])) {
-          digitCount++;
-        }
-        newPos = i + 1;
-      }
-      input.setSelectionRange(newPos, newPos);
-    });
-
-    if (formatted.length === 5 && date) {
-      const validation = validateTime(formatted, date);
-      if (!validation.isValid) {
-        setErrors((prev) => ({ ...prev, time: validation.error }));
-      }
-    }
-  };
 
   const handleDateInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const input = e.target;
@@ -485,25 +445,42 @@ export function BookingModal({ trigger }: BookingModalProps) {
             <Label htmlFor="time-input">
               Hora Preferida <span className="text-red-500">*</span>
             </Label>
-            <Input
-              id="time-input"
-              type="text"
-              placeholder="09:00"
-              name="time"
-              value={time}
-              onChange={handleTimeChange}
-              className={cn(
-                errors.time && "border-red-500 focus-visible:ring-red-500",
-              )}
-              maxLength={5}
-            />
-            <p className="text-xs text-gray-500">
-              Horario de atención: Lunes-Viernes 9:00 AM - 5:00 PM, Sábados 9:00
-              AM - 3:30 PM
-            </p>
+            <div className="relative">
+              <Input
+                id="time-input"
+                type="time"
+                name="time"
+                value={time}
+                onChange={(e) => {
+                  setTime(e.target.value);
+                  if (errors.time) setErrors((prev) => ({ ...prev, time: "" }));
+
+                  // Validate immediately if we have a complete time
+                  if (e.target.value && date) {
+                    const validation = validateTime(e.target.value, date);
+                    if (!validation.isValid) {
+                      setErrors((prev) => ({
+                        ...prev,
+                        time: validation.error,
+                      }));
+                    } else {
+                      setErrors((prev) => ({ ...prev, time: "" }));
+                    }
+                  }
+                }}
+                className={cn(
+                  errors.time && "border-red-500 focus-visible:ring-red-500",
+                  "appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none",
+                )}
+              />
+            </div>
             {errors.time && (
               <p className="text-xs text-red-500">{errors.time}</p>
             )}
+            <p className="text-xs text-gray-500">
+              Horario de atención: Lunes-Viernes 8:30 AM - 5:30 PM, Sábados 8:00
+              AM - 4:00 PM
+            </p>
           </div>
           <Button
             type="submit"

@@ -221,7 +221,7 @@ export function Contact() {
                   placeholder="¿Cómo podemos ayudarte?"
                   translate="yes"
                   className={cn(
-                    "min-h-37.5 bg-gray-50 border-gray-200",
+                    "min-h-37.5 bg-gray-50 border-gray-200 resize-none",
                     errors.message &&
                       "border-red-500 focus-visible:ring-red-500",
                   )}

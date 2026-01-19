@@ -3,7 +3,19 @@ import { format } from "date-fns";
 export const formatPhoneNumber = (value: string) => {
   if (!value) return "";
 
-  const digits = value.replace(/\D/g, "");
+  // Remove all non-digit characters first
+  let digits = value.replace(/\D/g, "");
+
+  // Detect and remove Nicaragua country code patterns
+  // Patterns: +505, 00505, 505 at the beginning
+  if (digits.startsWith('505')) {
+    digits = digits.slice(3); // Remove 505 country code
+  } else if (digits.startsWith('00505')) {
+    digits = digits.slice(5); // Remove 00505 international dialing prefix
+  }
+
+  // Limit to 8 digits for Nicaragua numbers
+  digits = digits.slice(0, 8);
 
   if (digits.length <= 4) {
     return digits;
@@ -22,7 +34,19 @@ export interface PhoneValidationResult {
 }
 
 export const validatePhone = (phone: string): PhoneValidationResult => {
-  const digits = phone.replace(/[^\d]/g, "");
+  // Remove all non-digit characters first
+  let digits = phone.replace(/[^\d]/g, "");
+
+  // Detect and remove Nicaragua country code patterns for validation
+  if (digits.startsWith('505')) {
+    digits = digits.slice(3); // Remove 505 country code
+  } else if (digits.startsWith('00505')) {
+    digits = digits.slice(5); // Remove 00505 international dialing prefix
+  }
+
+  // Limit to 8 digits for Nicaragua numbers
+  digits = digits.slice(0, 8);
+
   const result: PhoneValidationResult = {
     isValid: true,
     errors: [],
@@ -55,7 +79,19 @@ export const validateTime = (
     return { isValid: false, error: "La hora es requerida" };
   }
 
-  const [hours, minutes] = time.split(":").map(Number);
+  let time24 = time;
+
+  // If it's not already in 24h format (HH:MM), try parsing as 12h
+  if (!/^\d{2}:\d{2}$/.test(time)) {
+    const parsed = parse12HourTime(time);
+    if (parsed) {
+      time24 = parsed;
+    } else {
+      return { isValid: false, error: "Formato de hora inválido" };
+    }
+  }
+
+  const [hours, minutes] = time24.split(":").map(Number);
   if (isNaN(hours) || isNaN(minutes)) {
     return { isValid: false, error: "Formato de hora inválido" };
   }
@@ -73,12 +109,12 @@ export const validateTime = (
       };
     }
   } else {
-    // Monday-Friday: 9:00 AM - 5:00 PM (09:00 - 17:00)
-    if (hours < 9 || hours > 17) {
+    // Monday-Friday: 8:30 AM - 5:30 PM (08:30 - 17:30)
+    if (hours < 8 || hours > 17 || (hours === 17 && minutes > 30)) {
       return {
         isValid: false,
         error:
-          "Horario fuera de nuestro horario de atención (9:00 AM - 5:00 PM)",
+          "Horario fuera de nuestro horario de atención (8:30 AM - 5:30 PM)",
       };
     }
   }
@@ -109,23 +145,63 @@ export const validateTime = (
   return { isValid: true };
 };
 
-export const formatTimeInput = (value: string): string => {
-  const digits = value.replace(/\D/g, "");
-
-  if (digits.length <= 2) {
-    return digits;
-  }
-
-  if (digits.length <= 4) {
-    return `${digits.slice(0, 2)}:${digits.slice(2)}`;
-  }
-
-  return `${digits.slice(0, 2)}:${digits.slice(2, 4)}`;
-};
-
 export function formatTo12Hour(time24: string): string {
   const [hours, minutes] = time24.split(":").map(Number);
   const period = hours >= 12 ? "PM" : "AM";
   const hours12 = hours % 12 || 12;
   return `${hours12}:${minutes.toString().padStart(2, "0")} ${period}`;
 }
+
+export function parse12HourTime(time12: string): string {
+  if (!time12) return "";
+
+  const cleaned = time12.toUpperCase().replace(/\s+/g, " ").trim();
+
+  // Handle pure AM/PM (default to 12:00)
+  if (cleaned === "AM" || cleaned === "PM") {
+    return cleaned === "AM" ? "00:00" : "12:00";
+  }
+
+  const ampmMatch = cleaned.match(/(AM|PM)$/);
+  const ampm = ampmMatch ? ampmMatch[1] : "";
+
+  const timePart = cleaned.replace(/(AM|PM)$/, "").trim();
+  const [hours, minutes] = timePart.split(":").map((s) => parseInt(s) || 0);
+
+  if (hours < 0 || hours > 23 || minutes < 0 || minutes > 59) {
+    return "";
+  }
+
+  if (!ampm) {
+    // No AM/PM specified, assume 24-hour format or infer from context
+    return `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`;
+  }
+
+  // Convert 12-hour to 24-hour
+  let hours24 = hours;
+  if (ampm === "AM") {
+    if (hours === 12) hours24 = 0;
+  } else {
+    // PM
+    if (hours !== 12) hours24 += 12;
+  }
+
+  return `${hours24.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`;
+}
+
+export const formatPhoneForMessaging = (phone: string): string => {
+  if (!phone) return "";
+
+  // Remove all non-digit characters
+  let digits = phone.replace(/[^\d]/g, "");
+
+  // Remove Nicaragua country code if present to avoid duplication
+  if (digits.startsWith('505')) {
+    digits = digits.slice(3);
+  } else if (digits.startsWith('00505')) {
+    digits = digits.slice(5);
+  }
+
+  // Add Nicaragua country code for E.164 format
+  return `+505${digits}`;
+};
