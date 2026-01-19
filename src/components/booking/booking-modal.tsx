@@ -20,7 +20,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { formatPhoneNumber, validatePhone } from "@/lib/form-utils";
+import {
+  formatPhoneNumber,
+  formatTimeInput,
+  validatePhone,
+  validateTime,
+} from "@/lib/form-utils";
 
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -48,7 +53,9 @@ export function BookingModal({ trigger }: BookingModalProps) {
   const [customReason, setCustomReason] = useState("");
   const [phone, setPhone] = useState("");
   const [time, setTime] = useState("");
-  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [errors, setErrors] = useState<{ [key: string]: string | undefined }>(
+    {},
+  );
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const input = e.target;
@@ -84,41 +91,43 @@ export function BookingModal({ trigger }: BookingModalProps) {
 
   const [dateInput, setDateInput] = useState("");
 
-  const AVAILABLE_HOURS = [
-    { value: "09:00", label: "09:00 AM" },
-    { value: "10:00", label: "10:00 AM" },
-    { value: "11:00", label: "11:00 AM" },
-    { value: "13:00", label: "01:00 PM" },
-    { value: "14:00", label: "02:00 PM" },
-    { value: "15:00", label: "03:00 PM" },
-    { value: "16:00", label: "04:00 PM" },
-    { value: "17:00", label: "05:00 PM" },
-  ];
+  const handleTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const input = e.target;
+    const selectionStart = input.selectionStart || 0;
+    const valueBefore = input.value;
+    const digitsBeforeCursor = valueBefore
+      .slice(0, selectionStart)
+      .replace(/\D/g, "").length;
 
-  const getFilteredHours = () => {
-    if (!date) return AVAILABLE_HOURS;
-    const today = new Date();
-    const isToday = format(date, "yyyy-MM-dd") === format(today, "yyyy-MM-dd");
-    const isSaturday = date.getDay() === 6;
+    const formatted = formatTimeInput(input.value);
+    setTime(formatted);
 
-    let hours = AVAILABLE_HOURS;
-
-    if (isSaturday) {
-      hours = hours.filter((h) => {
-        const [hour] = h.value.split(":").map(Number);
-        return hour <= 15;
-      });
+    if (errors.time) {
+      setErrors((prev) => ({ ...prev, time: "" }));
     }
 
-    if (!isToday) return hours;
-
-    const currentHour = today.getHours();
-    const currentMinute = today.getMinutes();
-
-    return hours.filter((hour) => {
-      const [h] = hour.value.split(":").map(Number);
-      return h > currentHour || (h === currentHour && 0 > currentMinute);
+    requestAnimationFrame(() => {
+      let newPos = 0;
+      let digitCount = 0;
+      for (
+        let i = 0;
+        i < formatted.length && digitCount < digitsBeforeCursor;
+        i++
+      ) {
+        if (/\d/.test(formatted[i])) {
+          digitCount++;
+        }
+        newPos = i + 1;
+      }
+      input.setSelectionRange(newPos, newPos);
     });
+
+    if (formatted.length === 5 && date) {
+      const validation = validateTime(formatted, date);
+      if (!validation.isValid) {
+        setErrors((prev) => ({ ...prev, time: validation.error }));
+      }
+    }
   };
 
   const handleDateInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -177,6 +186,15 @@ export function BookingModal({ trigger }: BookingModalProps) {
         if (d >= new Date(new Date().setHours(0, 0, 0, 0))) {
           setDate(d);
           if (errors.date) setErrors((prev) => ({ ...prev, date: "" }));
+
+          if (time) {
+            const timeValidation = validateTime(time, d);
+            if (!timeValidation.isValid) {
+              setErrors((prev) => ({ ...prev, time: timeValidation.error }));
+            } else {
+              setErrors((prev) => ({ ...prev, time: "" }));
+            }
+          }
         } else {
           setErrors((prev) => ({
             ...prev,
@@ -216,7 +234,14 @@ export function BookingModal({ trigger }: BookingModalProps) {
       }
     }
     if (!date) newErrors.date = "La fecha es requerida";
-    if (!time) newErrors.time = "La hora es requerida";
+    if (!time) {
+      newErrors.time = "La hora es requerida";
+    } else {
+      const timeValidation = validateTime(time, date);
+      if (!timeValidation.isValid) {
+        newErrors.time = timeValidation.error || "Hora inválida";
+      }
+    }
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -425,6 +450,18 @@ export function BookingModal({ trigger }: BookingModalProps) {
                       }
                       if (errors.date)
                         setErrors((prev) => ({ ...prev, date: "" }));
+
+                      if (time && d) {
+                        const timeValidation = validateTime(time, d);
+                        if (!timeValidation.isValid) {
+                          setErrors((prev) => ({
+                            ...prev,
+                            time: timeValidation.error,
+                          }));
+                        } else {
+                          setErrors((prev) => ({ ...prev, time: "" }));
+                        }
+                      }
                     }}
                     disabled={(date) =>
                       date < new Date(new Date().setHours(0, 0, 0, 0)) ||
@@ -448,39 +485,22 @@ export function BookingModal({ trigger }: BookingModalProps) {
             <Label htmlFor="time-input">
               Hora Preferida <span className="text-red-500">*</span>
             </Label>
-            <div className="grid gap-3">
-              <Select
-                name="time"
-                value={time || ""}
-                onValueChange={(v) => {
-                  setTime(v);
-                  if (errors.time) setErrors((prev) => ({ ...prev, time: "" }));
-                }}
-              >
-                <SelectTrigger
-                  id="time-dropdown"
-                  className={cn(
-                    "w-full",
-                    errors.time && "border-red-500 focus:ring-red-500",
-                  )}
-                >
-                  <SelectValue placeholder="Seleccionar de horarios comunes" />
-                </SelectTrigger>
-                <SelectContent>
-                  {getFilteredHours().length > 0 ? (
-                    getFilteredHours().map((hour) => (
-                      <SelectItem key={hour.value} value={hour.value}>
-                        {hour.label}
-                      </SelectItem>
-                    ))
-                  ) : (
-                    <p className="p-2 text-sm text-muted-foreground">
-                      No hay horarios disponibles.
-                    </p>
-                  )}
-                </SelectContent>
-              </Select>
-            </div>
+            <Input
+              id="time-input"
+              type="text"
+              placeholder="09:00"
+              name="time"
+              value={time}
+              onChange={handleTimeChange}
+              className={cn(
+                errors.time && "border-red-500 focus-visible:ring-red-500",
+              )}
+              maxLength={5}
+            />
+            <p className="text-xs text-gray-500">
+              Horario de atención: Lunes-Viernes 9:00 AM - 5:00 PM, Sábados 9:00
+              AM - 3:30 PM
+            </p>
             {errors.time && (
               <p className="text-xs text-red-500">{errors.time}</p>
             )}

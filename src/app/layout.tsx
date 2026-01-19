@@ -24,10 +24,13 @@ export const metadata: Metadata = {
   verification: {
     google: "zkagBrTOB5Gf1AY9cA_vWbqZt1QpClKDJ_z4eq4z7hU",
   },
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "http://locahost:3000",
+  ),
   openGraph: {
     type: "website",
     locale: "es_ES",
-    url: "https://blossom-dental.vercel.app/",
+    url: "/",
     siteName: "Blossom Dental",
     title: "Blossom Dental - Odontología General y Ortodoncia",
     description:

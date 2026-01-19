@@ -2,7 +2,7 @@
 
 import { es } from "date-fns/locale";
 import { format } from "date-fns/format";
-import { formatTo12Hour } from "@/lib/utils";
+import { formatTo12Hour } from "@/lib/form-utils";
 import { sendWhatsAppMessage } from "@/lib/twilio";
 
 interface SubmitFormAction {
@@ -53,7 +53,7 @@ export async function submitForm(
       "fecha",
       date ? format(date, "EEEE, d 'de' MMMM 'de' yyyy", { locale: es }) : "",
     );
-    formData.append("hora", time || "");
+    formData.append("hora", time ? formatTo12Hour(time) : "");
 
     await sendWhatsAppMessage(
       {
