@@ -203,6 +203,8 @@ export function BookingModal({ trigger }: BookingModalProps) {
       newErrors.reason = "El motivo es requerido";
     } else if (reason === "Otro" && !customReason.trim()) {
       newErrors.customReason = "Por favor especifica el motivo";
+    } else if (reason === "Otro" && customReason.length < 4) {
+      newErrors.customReason = "El campo debe tener al menos 4 caracteres";
     }
 
     if (!phone.trim()) {
@@ -375,6 +377,7 @@ export function BookingModal({ trigger }: BookingModalProps) {
                     errors.customReason &&
                       "border-red-500 focus-visible:ring-red-500 mb-2",
                   )}
+                  maxLength={100}
                 />
                 {errors.customReason && (
                   <p className="text-xs text-red-500">{errors.customReason}</p>

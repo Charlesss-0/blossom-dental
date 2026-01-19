@@ -1,6 +1,9 @@
 "use server";
 
+import { es } from "date-fns/locale";
 import { format } from "date-fns/format";
+import { formatTo12Hour } from "@/lib/utils";
+import { sendWhatsAppMessage } from "@/lib/twilio";
 
 interface SubmitFormAction {
   name: string;
@@ -31,13 +34,39 @@ export async function submitForm(
     scriptUrl = process.env.LEADS_URL as string;
     formData.append("servicio", service || "");
     formData.append("mensaje", message || "");
+
+    await sendWhatsAppMessage(
+      {
+        name,
+        phone,
+        service: service || "",
+        message: message || "",
+      },
+      "contact",
+    );
   }
 
   if (form === "booking") {
     scriptUrl = process.env.BOOKING_URL as string;
     formData.append("servicio", service || "");
-    formData.append("fecha", date ? format(date, "dd/MM/yyyy") : "");
+    formData.append(
+      "fecha",
+      date ? format(date, "EEEE, d 'de' MMMM 'de' yyyy", { locale: es }) : "",
+    );
     formData.append("hora", time || "");
+
+    await sendWhatsAppMessage(
+      {
+        name,
+        phone,
+        service: service || "",
+        date: date
+          ? format(date, "EEEE, d 'de' MMMM 'de' yyyy", { locale: es })
+          : "",
+        time: time ? formatTo12Hour(time) : "",
+      },
+      "booking",
+    );
   }
 
   if (!scriptUrl) {
