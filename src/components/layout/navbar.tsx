@@ -9,13 +9,13 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { cn, scrollToSection } from "@/lib/utils";
 
 import { BookingModal } from "@/components/booking/booking-modal";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import { Menu } from "lucide-react";
-import { cn, scrollToSection } from "@/lib/utils";
 
 const navLinks = [
   { href: "#about", label: "Nosotros" },
@@ -88,7 +88,7 @@ export function Navbar() {
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="w-[85vw] sm:w-100 flex flex-col bg-white p-0 gap-0"
+              className="w-[85vw] sm:w-100 h-screen fixed flex flex-col bg-white p-0 gap-0"
             >
               <SheetHeader className="p-6 border-b border-gray-100 text-left">
                 <SheetTitle>
