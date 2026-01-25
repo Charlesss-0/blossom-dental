@@ -11,42 +11,32 @@ const faqs = [
   {
     question: "¿Cuánto cuesta una consulta dental en Managua?",
     answer:
-      "El costo de una consulta dental puede variar según la evaluación y el tratamiento requerido. En Blossom Dental ofrecemos una valoración clara y transparente.",
-  },
-  {
-    question: "¿Aceptan seguros dentales?",
-    answer:
-      "Sí, trabajamos con las principales aseguradoras del país. Te recomendamos verificar tu cobertura antes de tu cita. Nuestro equipo puede ayudarte con el proceso de facturación y reclamos.",
+      "El costo de la consulta puede variar según la evaluación inicial y el tratamiento necesario. En Blossom Dental realizamos valoraciones claras y transparentes antes de iniciar cualquier procedimiento.",
   },
   {
     question: "¿Ofrecen planes de pago?",
     answer:
-      "Sí, ofrecemos planes de pago flexibles para tratamientos mayores. Podemos trabajar contigo para crear un plan que se ajuste a tu presupuesto. Consulta con nuestro personal administrativo para más detalles.",
+      "Sí, contamos con opciones de pago flexibles para tratamientos que lo requieran. Nuestro equipo administrativo puede ayudarte a encontrar una alternativa que se ajuste a tu presupuesto.",
   },
   {
     question: "¿Qué debo hacer en caso de una emergencia dental?",
     answer:
-      "Para emergencias dentales, contáctanos inmediatamente por WhatsApp o llámanos. Hacemos todo lo posible para atender emergencias el mismo día. Si es fuera de horario, te daremos instrucciones sobre cómo manejar la situación hasta que podamos verte.",
+      "Si presentas una emergencia dental, contáctanos lo antes posible por teléfono o WhatsApp. Hacemos nuestro mayor esfuerzo por atender emergencias el mismo día y brindarte orientación inmediata.",
   },
   {
     question: "¿Cuánto tiempo dura una cita típica?",
     answer:
-      "Una consulta inicial generalmente dura entre 45-60 minutos. Las limpiezas dentales toman aproximadamente 30-45 minutos. Los tratamientos más complejos pueden requerir citas más largas o múltiples visitas.",
+      "La duración de la cita depende del tipo de atención. Una consulta inicial suele durar entre 30 y 60 minutos, mientras que otros procedimientos pueden requerir más tiempo o varias visitas.",
   },
   {
     question: "¿Atienden a niños?",
     answer:
-      "¡Por supuesto! Ofrecemos servicios de odontología pediátrica en un ambiente amigable y acogedor. Nuestro equipo está capacitado para hacer que la experiencia dental de los niños sea positiva y libre de estrés.",
-  },
-  {
-    question: "¿Qué debo llevar a mi primera cita?",
-    answer:
-      "Por favor trae tu identificación, tarjeta de seguro dental (si aplica), una lista de medicamentos que estés tomando, y cualquier radiografía dental reciente que tengas. Llega 10 minutos antes para completar el papeleo necesario.",
+      "Sí, atendemos a niños y ofrecemos un ambiente tranquilo y amigable para que su experiencia dental sea cómoda y positiva desde la primera visita.",
   },
   {
     question: "¿Realizan tratamientos de ortodoncia?",
     answer:
-      "Sí, ofrecemos tratamientos de ortodoncia completos, incluyendo brackets tradicionales y opciones más estéticas. Durante tu consulta inicial, evaluaremos tu caso y te presentaremos las mejores opciones para ti.",
+      "Sí, ofrecemos tratamientos de ortodoncia para niños, adolescentes y adultos. Durante la evaluación inicial analizamos tu caso y te explicamos las opciones disponibles.",
   },
 ];
 
