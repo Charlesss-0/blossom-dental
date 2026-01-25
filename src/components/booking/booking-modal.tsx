@@ -264,7 +264,7 @@ export function BookingModal({ trigger }: BookingModalProps) {
             confirmar.
           </DialogDescription>
         </DialogHeader>
-        <form onSubmit={handleSubmit} className="grid gap-4 py-4">
+        <form onSubmit={handleSubmit} className="py-4 grid gap-4">
           <div className="grid gap-2">
             <Label htmlFor="name">
               Nombre <span className="text-red-500">*</span>
@@ -395,7 +395,7 @@ export function BookingModal({ trigger }: BookingModalProps) {
                     )}
                     type="button"
                   >
-                    <CalendarIcon className="h-4 w-4" />
+                    <CalendarIcon className="w-4 h-4" />
                     <span className="sr-only">Seleccionar fecha</span>
                   </Button>
                 </PopoverTrigger>

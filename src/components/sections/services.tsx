@@ -11,42 +11,42 @@ const services = [
   {
     title: "Odontología General",
     description:
-      "Cuidado integral para mantener tu salud bucal en perfectas condiciones. Nuestro equipo de profesionales se dedica a proporcionar atención dental de primera clase en un ambiente cómodo y relajante.",
+      "Atención dental preventiva y restauradora para mantener dientes y encías saludables en todas las etapas de la vida.",
     image:
       "https://images.unsplash.com/photo-1644353740797-b85ffb378b3a?q=80&w=800&auto=format&fit=crop",
   },
   {
     title: "Ortodoncia",
     description:
-      "Alineación dental avanzada para una sonrisa perfecta y funcional. Utilizamos las últimas tecnologías para corregir la posición de tus dientes y mejorar tu mordida de manera eficiente.",
+      "Tratamientos de ortodoncia para corregir la alineación dental y mejorar la mordida, adaptados a niños, adolescentes y adultos.",
     image:
       "https://images.unsplash.com/photo-1598531228433-d9f0cb960816?q=80&w=800&auto=format&fit=crop",
   },
   {
     title: "Endodoncia",
     description:
-      "Tratamientos de conducto especializados para salvar tus dientes naturales. Utilizamos técnicas avanzadas para garantizar procedimientos precisos y aliviar el dolor de forma efectiva.",
+      "Tratamientos de conducto enfocados en aliviar el dolor, eliminar infecciones y conservar tus dientes naturales siempre que sea posible.",
     image:
       "https://images.unsplash.com/photo-1626736985932-c0df2ae07a2e?q=80&w=800&auto=format&fit=crop",
   },
   {
     title: "Periodoncia",
     description:
-      "Cuidado experto para la salud de tus encías y el soporte dental. Nuestros especialistas ofrecen tratamientos preventivos y correctivos para mantener una base sólida para tu sonrisa.",
+      "Diagnóstico y tratamiento de enfermedades de las encías para preservar la salud y el soporte de tus dientes a largo plazo.",
     image:
       "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=800&auto=format&fit=crop",
   },
   {
     title: "Cirugía",
     description:
-      "Procedimientos quirúrgicos seguros y mínimamente invasivos. Nuestro equipo cuenta con la experiencia necesaria para realizar intervenciones complejas con la máxima precisión y cuidado.",
+      "Procedimientos quirúrgicos dentales realizados con planificación cuidadosa, priorizando la seguridad, el confort y una recuperación adecuada.",
     image:
       "https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=800&auto=format&fit=crop",
   },
   {
     title: "Implantes",
     description:
-      "Soluciones duraderas y naturales para reemplazar dientes perdidos. Los implantes dentales son la opción más avanzada para restaurar la funcionalidad y estética de tu boca.",
+      "Implantes dentales para reemplazar dientes perdidos y recuperar la función masticatoria y la estética de forma segura y duradera.",
     image:
       "https://images.unsplash.com/photo-1606811842243-af7e16970c1f?q=80&w=800&auto=format&fit=crop",
   },
@@ -56,25 +56,25 @@ export function Services() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section id="services" className="py-24 bg-gray-100">
-      <div className="container mx-auto px-6 md:px-12">
-        <FadeIn className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-sm font-semibold tracking-widest text-gray-400 uppercase mb-4 block">
+    <section id="services" className="py-24 bg-gray-50">
+      <div className="container px-6 mx-auto md:px-12">
+        <FadeIn className="max-w-3xl mx-auto mb-16 text-center">
+          <span className="block mb-4 text-sm font-semibold tracking-widest text-gray-400 uppercase">
             Nuestros Servicios
           </span>
-          <h2 className="text-4xl md:text-5xl font-serif text-gray-900 mb-6">
-            Cuidado Integral para <br />
-            <span className="italic text-gray-600">Tu Bienestar</span>
+          <h2 className="mb-6 font-serif text-4xl text-gray-900 md:text-5xl">
+            Servicios Odontológicos <br />
+            <span className="italic text-gray-600">de Alta Calidad</span>
           </h2>
-          <p className="text-gray-600 text-lg leading-relaxed">
-            Ofrecemos una gama completa de tratamientos dentales de alta
-            calidad, realizados con precisión y un enfoque humano centrado en tu
-            comodidad.
+          <p className="text-lg leading-relaxed text-gray-600">
+            Ofrecemos una gama completa de tratamientos dentales adaptados a las
+            necesidades de cada paciente, desde cuidados preventivos hasta
+            procedimientos especializados.
           </p>
         </FadeIn>
 
         <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
             <div className="space-y-2">
               {services.map((service, index) => {
                 const isActive = index === activeIndex;
@@ -89,7 +89,7 @@ export function Services() {
                   >
                     <button
                       onClick={() => setActiveIndex(index)}
-                      className="w-full flex items-center justify-between text-left group cursor-pointer"
+                      className="flex items-center justify-between w-full text-left cursor-pointer group"
                     >
                       <h3
                         className={`text-xl md:text-2xl font-serif font-medium transition-colors duration-300 ${
@@ -126,7 +126,7 @@ export function Services() {
                             ease: [0.04, 0.62, 0.23, 0.98],
                           }}
                         >
-                          <p className="text-gray-600 leading-relaxed text-base pt-4 max-w-lg">
+                          <p className="max-w-lg pt-4 text-base leading-relaxed text-gray-600">
                             {service.description}
                           </p>
                         </motion.div>
@@ -138,7 +138,7 @@ export function Services() {
             </div>
 
             <AnimatePresence mode="wait">
-              <div className="relative aspect-square md:aspect-4/5 rounded-3xl overflow-hidden shadow-xl lg:shadow-2xl hidden md:block">
+              <div className="relative overflow-hidden shadow-xl aspect-4/3 md:aspect-4/5 rounded-3xl lg:shadow-2xl md:block">
                 <motion.div
                   key={activeIndex}
                   initial={{ opacity: 0, scale: 1.05 }}

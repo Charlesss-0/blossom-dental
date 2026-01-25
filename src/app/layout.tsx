@@ -18,9 +18,9 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Blossom Dental - Odontología General y Ortodoncia",
+  title: "Clínica Dental en Managua | Blossom Dental",
   description:
-    "Experimenta el cuidado dental premium y gentil en Blossom Dental. Agenda tu cita hoy.",
+    "Blossom Dental es una clínica dental en Managua especializada en atención odontológica moderna y personalizada. Agenda tu cita hoy.",
   verification: {
     google: "zkagBrTOB5Gf1AY9cA_vWbqZt1QpClKDJ_z4eq4z7hU",
   },
@@ -32,9 +32,9 @@ export const metadata: Metadata = {
     locale: "es_ES",
     url: "/",
     siteName: "Blossom Dental",
-    title: "Blossom Dental - Odontología General y Ortodoncia",
+    title: "Clínica Dental en Managua | Blossom Dental",
     description:
-      "Experimenta el cuidado dental premium y gentil en Blossom Dental. Agenda tu cita hoy.",
+      "Blossom Dental es una clínica dental en Managua especializada en atención odontológica moderna y personalizada. Agenda tu cita hoy.",
     images: [
       {
         url: "/dentista-explicando-radiografia-dental-a-paciente-infantil.jpg",

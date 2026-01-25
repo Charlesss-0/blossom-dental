@@ -104,15 +104,20 @@ export function Contact() {
 
   return (
     <section id="contact" className="py-24 bg-gray-50">
-      <div className="container mx-auto px-6 md:px-12">
+      <div className="container px-6 mx-auto md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           <FadeIn>
-            <span className="text-sm font-semibold tracking-widest text-gray-400 uppercase mb-4 block">
+            <span className="block mb-4 text-sm font-semibold tracking-widest text-gray-400 uppercase">
               Contáctanos
             </span>
-            <h2 className="text-4xl font-serif text-gray-900 mb-8">
+            <h2 className="font-serif text-4xl text-gray-900">
               Nos encantaría saber de ti
             </h2>
+            <p className="mt-4 mb-8 leading-relaxed text-gray-600">
+              Si tienes alguna consulta o deseas agendar una cita, completa el
+              formulario y nuestro equipo se pondrá en contacto contigo lo antes
+              posible.
+            </p>
             <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2 md:col-span-2">
@@ -240,7 +245,7 @@ export function Contact() {
               <Button
                 type="submit"
                 disabled={loading}
-                className="w-full md:w-auto px-8 py-6 rounded-full bg-gray-900 text-white hover:bg-black cursor-pointer"
+                className="w-full px-8 py-6 text-white bg-gray-900 rounded-full cursor-pointer md:w-auto hover:bg-black"
               >
                 {loading ? "Enviando..." : "Enviar Mensaje"}
               </Button>
@@ -249,7 +254,7 @@ export function Contact() {
 
           <FadeIn
             delay={0.2}
-            className="relative h-full min-h-100 bg-gray-100 rounded-2xl overflow-hidden"
+            className="relative h-full overflow-hidden bg-gray-100 min-h-100 rounded-2xl"
           >
             <div className="absolute inset-0 bg-gray-200">
               <iframe

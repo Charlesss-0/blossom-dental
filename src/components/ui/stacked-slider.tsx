@@ -52,7 +52,7 @@ export function StackedSlider({ images, className }: StackedSliderProps) {
               }}
             >
               <div
-                className="absolute inset-0 bg-cover bg-center"
+                className="absolute inset-0 bg-center bg-cover"
                 style={{
                   backgroundImage: `url('${image}')`,
                 }}
@@ -64,31 +64,31 @@ export function StackedSlider({ images, className }: StackedSliderProps) {
       </div>
 
       {/* Navigation Controls */}
-      <div className="absolute bottom-4 right-4 flex gap-2 z-50">
+      <div className="absolute z-50 flex bottom-4 right-4 gap-2">
         <Button
           variant="outline"
           size="icon"
           onClick={prevSlide}
-          className="bg-white/90 backdrop-blur-sm hover:bg-white shadow-lg"
+          className="shadow-lg bg-white/90 backdrop-blur-sm hover:bg-white"
           type="button"
           aria-label="Previous image"
         >
-          <ChevronLeft className="h-4 w-4" />
+          <ChevronLeft className="w-4 h-4" />
         </Button>
         <Button
           variant="outline"
           size="icon"
           onClick={nextSlide}
-          className="bg-white/90 backdrop-blur-sm hover:bg-white shadow-lg"
+          className="shadow-lg bg-white/90 backdrop-blur-sm hover:bg-white"
           type="button"
           aria-label="Next image"
         >
-          <ChevronRight className="h-4 w-4" />
+          <ChevronRight className="w-4 h-4" />
         </Button>
       </div>
 
       {/* Slide Indicators */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-50">
+      <div className="absolute z-50 flex bottom-4 left-1/2 -translate-x-1/2 gap-2">
         {images.map((_, index) => (
           <button
             key={index}

@@ -9,9 +9,9 @@ import { FadeIn } from "@/components/ui/fade-in";
 
 const faqs = [
   {
-    question: "¿Cuál es el horario de atención?",
+    question: "¿Cuánto cuesta una consulta dental en Managua?",
     answer:
-      "Estamos abiertos de lunes a viernes de 9:00 AM a 6:00 PM, y los sábados de 9:00 AM a 2:00 PM. Para emergencias dentales fuera de horario, por favor contáctanos por WhatsApp.",
+      "El costo de una consulta dental puede variar según la evaluación y el tratamiento requerido. En Blossom Dental ofrecemos una valoración clara y transparente.",
   },
   {
     question: "¿Aceptan seguros dentales?",
@@ -52,18 +52,19 @@ const faqs = [
 
 export function FAQ() {
   return (
-    <section id="faq" className="py-24 bg-gray-50">
-      <div className="container mx-auto px-6 md:px-12">
-        <FadeIn className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-sm font-semibold tracking-widest text-gray-400 uppercase mb-4 block">
-            Preguntas Frecuentes
-          </span>
-          <h2 className="text-4xl font-serif text-gray-900 mb-6">
+    <section id="faq" className="py-24 bg-gray-100">
+      <div className="container px-6 mx-auto md:px-12">
+        <FadeIn className="max-w-2xl mx-auto mb-16 text-center">
+          <span className="block mb-4 text-sm font-semibold tracking-widest text-gray-400 uppercase">
             ¿Tienes Preguntas?
+          </span>
+          <h2 className="mb-6 font-serif text-4xl text-gray-900">
+            Preguntas Frecuentes Sobre Nuestra <br />
+            <span className="italic text-gray-600">Clínica Dental</span>
           </h2>
-          <p className="text-gray-600 text-lg">
-            Encuentra respuestas a las preguntas más comunes sobre nuestros
-            servicios y procedimientos.
+          <p className="text-lg text-gray-600">
+            Aquí encontrarás respuestas a las preguntas más comunes sobre
+            nuestros servicios, tratamientos y atención al paciente.
           </p>
         </FadeIn>
 

@@ -12,7 +12,7 @@ const team = [
   {
     name: "Dra. Sofia Martinez",
     role: "Directora Clínica & Ortodoncista",
-    bio: "Con más de 15 años de experiencia, la Dra. Martinez se especializa en crear sonrisas hermosas y funcionales mediante ortodoncia avanzada. Su enfoque se centra en la precisión clínica combinada con una atención personalizada y humana.",
+    bio: "La Dra. Sofía Martínez cuenta con amplia experiencia en ortodoncia y atención dental integral. Su enfoque se basa en la escucha activa, la precisión clínica y el acompañamiento cercano de cada paciente durante su tratamiento.",
     image:
       "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=1000&auto=format&fit=crop",
   },
@@ -74,31 +74,31 @@ export function Team() {
   const currentMember = team[activeIndex];
 
   return (
-    <section id="team" className="py-24 bg-gray-100">
-      <div className="container mx-auto px-6 md:px-12">
+    <section id="team" className="py-24 bg-gray-50">
+      <div className="container px-6 mx-auto md:px-12">
         <FadeIn>
-          <div className="text-center max-w-2xl mx-auto mb-20">
-            <span className="text-sm font-semibold tracking-widest text-gray-400 uppercase mb-4 block">
+          <div className="max-w-2xl mx-auto mb-20 text-center">
+            <span className="block mb-4 text-sm font-semibold tracking-widest text-gray-400 uppercase">
               Profesionales Expertos
             </span>
-            <h2 className="text-4xl md:text-5xl font-serif text-gray-900 mb-6">
-              Nuestro Equipo
+            <h2 className="mb-6 font-serif text-4xl text-gray-900 md:text-5xl">
+              Nuestro Equipo Dental
             </h2>
           </div>
         </FadeIn>
 
         <div className="relative max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center min-h-125">
-            <div className="lg:col-span-7 order-2 lg:order-1">
+          <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-12 min-h-125">
+            <div className="order-2 lg:col-span-7 lg:order-1">
               <FadeIn key={`info-${activeIndex}`}>
-                <div className="space-y-6">
-                  <h3 className="text-5xl md:text-6xl font-serif text-gray-900 leading-tight">
+                <div className="space-y-4 md:space-y-6">
+                  <h3 className="font-serif text-4xl leading-tight text-gray-900 md:text-6xl">
                     {currentMember.name}
                   </h3>
-                  <p className="text-blue-600 font-medium uppercase tracking-widest text-sm">
+                  <p className="text-sm font-medium tracking-widest text-blue-600 uppercase">
                     {currentMember.role}
                   </p>
-                  <p className="text-gray-600 text-lg leading-relaxed max-w-xl hidden md:block">
+                  <p className="max-w-xl text-sm leading-relaxed text-gray-600 md:text-lg md:block">
                     {currentMember.bio}
                   </p>
 
@@ -107,28 +107,28 @@ export function Team() {
                       variant="outline"
                       size="icon"
                       onClick={prevMember}
-                      className="rounded-full h-12 w-12 border-gray-200 text-gray-400 hover:text-gray-900 hover:border-gray-900 transition-colors"
+                      className="w-12 h-12 text-gray-400 transition-colors border-gray-200 rounded-full hover:text-gray-900 hover:border-gray-900"
                       aria-label="Anterior miembro"
                     >
-                      <ChevronLeft className="h-6 w-6" />
+                      <ChevronLeft className="w-6 h-6" />
                     </Button>
                     <Button
                       variant="outline"
                       size="icon"
                       onClick={nextMember}
-                      className="rounded-full h-12 w-12 border-gray-200 text-gray-400 hover:text-gray-900 hover:border-gray-900 transition-colors"
+                      className="w-12 h-12 text-gray-400 transition-colors border-gray-200 rounded-full hover:text-gray-900 hover:border-gray-900"
                       aria-label="Siguiente miembro"
                     >
-                      <ChevronRight className="h-6 w-6" />
+                      <ChevronRight className="w-6 h-6" />
                     </Button>
                   </div>
                 </div>
               </FadeIn>
             </div>
 
-            <div className="lg:col-span-5 order-1 lg:order-2">
+            <div className="order-1 lg:col-span-5 lg:order-2">
               <FadeIn key={`image-${activeIndex}`} className="relative">
-                <div className="aspect-4/5 relative rounded-3xl overflow-hidden shadow-2xl">
+                <div className="relative overflow-hidden shadow-2xl aspect-square md:aspect-4/5 rounded-3xl">
                   <Image
                     src={currentMember.image}
                     alt={currentMember.name}
@@ -142,7 +142,7 @@ export function Team() {
             </div>
           </div>
 
-          <div className="mt-20 pt-12 border-t border-gray-200">
+          <div className="pt-12 mt-20 border-t border-gray-200">
             <div className="flex flex-wrap justify-center gap-6 md:gap-12">
               {team.map((member, index) => (
                 <button
@@ -152,14 +152,14 @@ export function Team() {
                     "group flex flex-col items-center gap-3 transition-all duration-300",
                     activeIndex === index
                       ? "opacity-100"
-                      : "opacity-40 hover:opacity-70"
+                      : "opacity-40 hover:opacity-70",
                   )}
                 >
                   <div
                     className={cn(
                       "relative h-16 w-16 md:h-20 md:w-20 rounded-full overflow-hidden transition-all duration-300 ring-2 ring-offset-4 ring-transparent",
                       activeIndex === index &&
-                        "ring-blue-600 ring-offset-white scale-110"
+                        "ring-blue-600 ring-offset-white scale-110",
                     )}
                   >
                     <Image
@@ -169,8 +169,8 @@ export function Team() {
                       className="object-cover"
                     />
                   </div>
-                  <div className="text-center hidden md:block">
-                    <p className="text-xs font-bold text-gray-900 uppercase tracking-tighter">
+                  <div className="hidden text-center md:block">
+                    <p className="text-xs font-bold tracking-tighter text-gray-900 uppercase">
                       {member.name.split(" ").slice(-2).join(" ")}
                     </p>
                     <p className="text-[10px] text-gray-600 uppercase tracking-widest mt-0.5">

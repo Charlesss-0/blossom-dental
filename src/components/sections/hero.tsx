@@ -7,35 +7,35 @@ import { motion } from "framer-motion";
 
 export function Hero() {
   return (
-    <section className="relative min-h-dvh flex items-center overflow-hidden bg-gray-50">
-      <div className="container mx-auto px-6 md:px-12 py-20 pt-26 lg:py-0">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+    <section className="relative flex items-center min-h-dvh bg-gray-50">
+      <div className="container relative px-6 mx-auto">
+        <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-14">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="order-2 lg:order-1"
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-gray-900 leading-tight mb-6">
-              Tu Sonrisa{" "}
-              <span className="italic text-gray-600">
-                Importa
-                <br />
-                Para Nosotros
-              </span>
+            <h1 className="mb-6 font-serif text-4xl font-medium leading-tight text-gray-900 md:text-5xl lg:text-6xl md:mb-8">
+              Clínica Dental{" "}
+              <span className="italic text-gray-600">en Managua</span>
             </h1>
 
-            <p className="text-base md:text-lg text-gray-600 mb-8 max-w-lg leading-relaxed">
-              Diseñado especialmente para pacientes que buscan atención dental
-              de calidad. Te ofrecemos experiencia profesional a un precio
-              inmejorable.
+            <h2 className="mb-2 font-serif text-lg font-medium leading-relaxed text-gray-900 md:text-2xl">
+              Atención dental profesional y confiable para toda la familia
+            </h2>
+
+            <p className="mb-12 leading-relaxed text-gray-600 md:text-lg">
+              En Blossom Dental ofrecemos diagnósticos claros, tecnología
+              moderna y un trato cercano para brindar tratamientos pensados para
+              cada paciente.
             </p>
 
             <BookingModal
               trigger={
                 <Button
                   size="lg"
-                  className="h-12 px-8 rounded-full text-base bg-gray-900 text-white hover:bg-black transition-all"
+                  className="h-12 px-8 text-base text-white transition-all bg-gray-900 rounded-full cursor-pointer hover:bg-black"
                 >
                   Agendar Cita
                 </Button>
@@ -49,45 +49,25 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             className="order-1 lg:order-2"
           >
-            <div className="grid grid-cols-2 gap-4 lg:gap-6">
-              <div className="aspect-square rounded-2xl overflow-hidden bg-gray-100">
-                <Image
-                  src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=800&auto=format&fit=crop"
-                  alt="Dental equipment"
-                  width={400}
-                  height={400}
-                  className="w-full h-full object-cover"
-                />
-              </div>
+            <div className="relative overflow-hidden bg-gray-100 shadow-xl aspect-4/3 md:aspect-4/4 rounded-2xl">
+              <Image
+                src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1600&auto=format&fit=crop"
+                alt="Patient receiving dental care"
+                width={800}
+                height={500}
+                className="object-cover w-full h-full"
+                priority
+              />
 
-              <div className="aspect-square rounded-2xl overflow-hidden bg-gray-100">
-                <Image
-                  src="https://images.unsplash.com/photo-1598531228433-d9f0cb960816?q=80&w=800&auto=format&fit=crop"
-                  alt="Happy patient"
-                  width={400}
-                  height={400}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              <div className="col-span-2 aspect-16/10 rounded-2xl overflow-hidden bg-gray-100 relative">
-                <Image
-                  src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1600&auto=format&fit=crop"
-                  alt="Patient receiving dental care"
-                  width={800}
-                  height={500}
-                  className="w-full h-full object-cover"
-                />
-
-                <div className="absolute bottom-4 left-4 right-4 bg-gray-900/90 backdrop-blur-sm rounded-xl p-4 md:p-6">
-                  <h3 className="text-white font-serif text-lg md:text-xl mb-2">
-                    Un Enfoque Moderno para el Cuidado de Clase Mundial
-                  </h3>
-                  <p className="text-gray-300 text-xs md:text-sm leading-relaxed">
-                    Estamos aquí para brindar un servicio excepcional que
-                    satisface tus necesidades y supera tus expectativas.
-                  </p>
-                </div>
+              <div className="absolute p-4 bottom-4 left-4 right-4 bg-gray-900/90 backdrop-blur-sm rounded-xl md:p-6">
+                <h3 className="mb-2 font-serif text-lg text-white md:text-xl">
+                  Cuidado Odontológico Integral y Moderno
+                </h3>
+                <p className="text-xs leading-relaxed text-gray-300 md:text-sm">
+                  Atendemos a pacientes de todas las edades con un enfoque
+                  humano, tecnología avanzada y tratamientos diseñados para
+                  cuidar tu salud bucal a largo plazo.
+                </p>
               </div>
             </div>
           </motion.div>

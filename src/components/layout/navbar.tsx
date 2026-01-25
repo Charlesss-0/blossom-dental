@@ -44,18 +44,18 @@ export function Navbar() {
           : "bg-transparent py-6",
       )}
     >
-      <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
+      <div className="container flex items-center justify-between px-6 mx-auto md:px-12">
         <Link href="/" className="flex items-center gap-2">
           <Image
             src="/logo.jpg"
             alt="Blossom Dental"
             width={120}
             height={120}
-            className="h-12 w-auto object-contain rounded-full border"
+            className="object-contain w-auto h-12 border rounded-full"
           />
         </Link>
 
-        <div className="hidden md:flex items-center gap-8">
+        <div className="items-center hidden md:flex gap-8">
           {navLinks.map((link) => (
             <Link
               key={link.label}
@@ -68,7 +68,7 @@ export function Navbar() {
           ))}
           <BookingModal
             trigger={
-              <Button className="rounded-full px-6 bg-gray-900 text-white hover:bg-gray-800">
+              <Button className="px-6 text-white bg-gray-900 rounded-full hover:bg-gray-800">
                 Agendar Cita
               </Button>
             }
@@ -88,28 +88,28 @@ export function Navbar() {
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="w-[85vw] sm:w-100 h-screen fixed flex flex-col bg-white p-0 gap-0"
+              className="w-[85vw] sm:w-100 flex flex-col bg-white p-0 gap-0"
             >
-              <SheetHeader className="p-6 border-b border-gray-100 text-left">
+              <SheetHeader className="p-6 text-left border-b border-gray-100">
                 <SheetTitle>
                   <Image
                     src="/logo.jpg"
                     alt="Blossom Dental"
                     width={100}
                     height={100}
-                    className="h-10 w-auto object-contain rounded-full"
+                    className="object-contain w-auto h-10 rounded-full"
                   />
                   <span className="sr-only">Blossom Dental</span>
                 </SheetTitle>
               </SheetHeader>
 
-              <div className="flex-1 overflow-y-auto py-8 px-6 flex flex-col gap-8">
+              <div className="flex flex-col flex-1 px-6 py-8 overflow-y-auto gap-8">
                 <div className="flex flex-col gap-6">
                   {navLinks.map((link) => (
                     <Link
                       key={link.label}
                       href={link.href}
-                      className="text-2xl font-serif font-medium text-gray-900 hover:text-gray-600 transition-colors"
+                      className="font-serif text-2xl font-medium text-gray-900 hover:text-gray-600 transition-colors"
                       onClick={(e) => {
                         scrollToSection(e, link.href);
                         setOpen(false);
@@ -120,31 +120,31 @@ export function Navbar() {
                   ))}
                 </div>
 
-                <div className="mt-auto pt-8 border-t border-gray-100 space-y-6">
+                <div className="pt-8 mt-auto border-t border-gray-100 space-y-6">
                   <BookingModal
                     trigger={
-                      <Button className="w-full h-12 rounded-full bg-black text-white text-lg hover:bg-gray-800 transition-colors">
+                      <Button className="w-full h-12 text-lg text-white bg-black rounded-full hover:bg-gray-800 transition-colors">
                         Agendar Cita
                       </Button>
                     }
                   />
 
-                  <div className="space-y-4 text-sm text-gray-500">
+                  <div className="text-sm text-gray-500 space-y-4">
                     <div>
-                      <h4 className="font-medium text-gray-900 mb-2">
+                      <h4 className="mb-2 font-medium text-gray-900">
                         Contacto
                       </h4>
                       <a
                         href="https://wa.me/50557925341?text=Hola,%20me%20gustar%C3%ADa%20agendar%20una%20cita."
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-gray-500 hover:text-gray-900 text-sm transition-colors underline-offset-2 underline"
+                        className="text-sm text-gray-500 underline hover:text-gray-900 transition-colors underline-offset-2"
                       >
                         Contáctanos por WhatsApp
                       </a>
                     </div>
                     <div>
-                      <h4 className="font-medium text-gray-900 mb-2">
+                      <h4 className="mb-2 font-medium text-gray-900">
                         Ubicación
                       </h4>
                       <p className="leading-relaxed">
