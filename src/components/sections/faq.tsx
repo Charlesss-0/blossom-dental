@@ -7,7 +7,7 @@ import {
 
 import { FadeIn } from "@/components/ui/fade-in";
 
-const faqs = [
+const defaultFaqs = [
   {
     question: "¿Cuánto cuesta una consulta dental en Managua?",
     answer:
@@ -40,27 +40,45 @@ const faqs = [
   },
 ];
 
-export function FAQ() {
+interface FAQProps {
+  items?: { question: string; answer: string }[];
+  title?: React.ReactNode;
+  subtitle?: React.ReactNode;
+  description?: string;
+  className?: string;
+}
+
+export function FAQ({
+  items = defaultFaqs,
+  title,
+  subtitle,
+  description,
+  className,
+}: FAQProps) {
   return (
-    <section id="faq" className="py-24 bg-gray-100">
+    <section id="faq" className={`py-24 bg-gray-100 ${className}`}>
       <div className="container px-6 mx-auto md:px-12">
         <FadeIn className="max-w-2xl mx-auto mb-16 text-center">
           <span className="block mb-4 text-sm font-semibold tracking-widest text-gray-400 uppercase">
-            ¿Tienes Preguntas?
+            {subtitle || "¿Tienes Preguntas?"}
           </span>
           <h2 className="mb-6 font-serif text-4xl text-gray-900">
-            Preguntas Frecuentes Sobre Nuestra <br />
-            <span className="italic text-gray-600">Clínica Dental</span>
+            {title || (
+              <>
+                Preguntas Frecuentes Sobre Nuestra <br />
+                <span className="italic text-gray-600">Clínica Dental</span>
+              </>
+            )}
           </h2>
           <p className="text-lg text-gray-600">
-            Aquí encontrarás respuestas a las preguntas más comunes sobre
-            nuestros servicios, tratamientos y atención al paciente.
+            {description ||
+              "Aquí encontrarás respuestas a las preguntas más comunes sobre nuestros servicios, tratamientos y atención al paciente."}
           </p>
         </FadeIn>
 
         <FadeIn delay={0.2} className="max-w-3xl mx-auto">
           <Accordion type="single" collapsible className="w-full">
-            {faqs.map((faq, index) => (
+            {items.map((faq, index) => (
               <AccordionItem key={index} value={`item-${index}`}>
                 <AccordionTrigger className="text-left cursor-pointer">
                   {faq.question}

@@ -103,11 +103,11 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 bg-gray-50">
+    <section id="contact" className="py-24 bg-white">
       <div className="container px-6 mx-auto md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           <FadeIn>
-            <span className="block mb-4 text-sm font-semibold tracking-widest text-gray-400 uppercase">
+            <span className="block mb-4 text-sm font-semibold tracking-widest text-gray-500 uppercase">
               Contáctanos
             </span>
             <h2 className="font-serif text-4xl text-gray-900">

@@ -18,9 +18,9 @@ import Link from "next/link";
 import { Menu } from "lucide-react";
 
 const navLinks = [
-  { href: "#about", label: "Nosotros" },
-  { href: "#services", label: "Servicios" },
-  { href: "#contact", label: "Contacto" },
+  { href: "/#about", label: "Nosotros" },
+  { href: "/services", label: "Servicios" },
+  { href: "/#contact", label: "Contacto" },
 ];
 
 export function Navbar() {
@@ -55,13 +55,12 @@ export function Navbar() {
           />
         </Link>
 
-        <div className="items-center hidden md:flex gap-8">
+        <div className="items-center hidden gap-8 md:flex">
           {navLinks.map((link) => (
             <Link
               key={link.label}
               href={link.href}
-              className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
-              onClick={(e) => scrollToSection(e, link.href)}
+              className="text-sm font-medium text-gray-600 transition-colors hover:text-gray-900"
             >
               {link.label}
             </Link>
@@ -103,13 +102,13 @@ export function Navbar() {
                 </SheetTitle>
               </SheetHeader>
 
-              <div className="flex flex-col flex-1 px-6 py-8 overflow-y-auto gap-8">
+              <div className="flex flex-col flex-1 gap-8 px-6 py-8 overflow-y-auto">
                 <div className="flex flex-col gap-6">
                   {navLinks.map((link) => (
                     <Link
                       key={link.label}
                       href={link.href}
-                      className="font-serif text-2xl font-medium text-gray-900 hover:text-gray-600 transition-colors"
+                      className="font-serif text-2xl font-medium text-gray-900 transition-colors hover:text-gray-600"
                       onClick={(e) => {
                         scrollToSection(e, link.href);
                         setOpen(false);
@@ -120,16 +119,16 @@ export function Navbar() {
                   ))}
                 </div>
 
-                <div className="pt-8 mt-auto border-t border-gray-100 space-y-6">
+                <div className="pt-8 mt-auto space-y-6 border-t border-gray-100">
                   <BookingModal
                     trigger={
-                      <Button className="w-full h-12 text-lg text-white bg-black rounded-full hover:bg-gray-800 transition-colors">
+                      <Button className="w-full h-12 text-lg text-white transition-colors bg-black rounded-full hover:bg-gray-800">
                         Agendar Cita
                       </Button>
                     }
                   />
 
-                  <div className="text-sm text-gray-500 space-y-4">
+                  <div className="space-y-4 text-sm text-gray-500">
                     <div>
                       <h4 className="mb-2 font-medium text-gray-900">
                         Contacto
@@ -138,7 +137,7 @@ export function Navbar() {
                         href="https://wa.me/50557925341?text=Hola,%20me%20gustar%C3%ADa%20agendar%20una%20cita."
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm text-gray-500 underline hover:text-gray-900 transition-colors underline-offset-2"
+                        className="text-sm text-gray-500 underline transition-colors hover:text-gray-900 underline-offset-2"
                       >
                         Contáctanos por WhatsApp
                       </a>

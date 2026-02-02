@@ -13,16 +13,16 @@ const clinicImages = [
 
 export function About() {
   return (
-    <section id="about" className="relative py-24 overflow-hidden bg-gray-100">
+    <section id="about" className="relative py-24 overflow-hidden bg-gray-50">
       <div className="container px-6 mx-auto md:px-12">
-        <div className="grid items-center grid-cols-1 gap-16 md:grid-cols-2">
+        <div className="items-center grid grid-cols-1 gap-16 md:grid-cols-2">
           <FadeIn className="relative">
             <StackedSlider images={clinicImages} />
-            <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-gray-50 rounded-full z-[-1]" />
+            <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-white rounded-full z-[-1]" />
           </FadeIn>
 
           <FadeIn delay={0.2}>
-            <span className="block mb-4 text-sm font-semibold tracking-widest text-gray-400 uppercase">
+            <span className="block mb-4 text-sm font-semibold tracking-widest text-gray-500 uppercase">
               Nuestra Filosofía
             </span>
             <h2 className="mb-8 font-serif text-4xl leading-tight text-gray-900 md:text-5xl">
@@ -33,7 +33,7 @@ export function About() {
               </span>
             </h2>
 
-            <div className="space-y-6 leading-relaxed text-gray-600 md:text-lg">
+            <div className="leading-relaxed text-gray-700 space-y-6 md:text-lg">
               <p>
                 Cada tratamiento en Blossom Dental comienza con una evaluación
                 detallada y una explicación clara de las opciones disponibles,
@@ -52,7 +52,7 @@ export function About() {
                 trigger={
                   <Button
                     size="lg"
-                    className="h-12 px-8 text-base text-white transition-all bg-gray-900 rounded-full hover:bg-black"
+                    className="h-12 px-8 text-base text-white bg-gray-900 rounded-full transition-all hover:bg-black focus-visible:ring-2 focus-visible:ring-gray-900"
                   >
                     Agendar Cita
                   </Button>

@@ -74,11 +74,11 @@ export function Team() {
   const currentMember = team[activeIndex];
 
   return (
-    <section id="team" className="py-24 bg-gray-50">
+    <section id="team" className="py-24 bg-white">
       <div className="container px-6 mx-auto md:px-12">
         <FadeIn>
           <div className="max-w-2xl mx-auto mb-20 text-center">
-            <span className="block mb-4 text-sm font-semibold tracking-widest text-gray-400 uppercase">
+            <span className="block mb-4 text-sm font-semibold tracking-widest text-gray-500 uppercase">
               Profesionales Expertos
             </span>
             <h2 className="mb-6 font-serif text-4xl text-gray-900 md:text-5xl">
@@ -88,26 +88,26 @@ export function Team() {
         </FadeIn>
 
         <div className="relative max-w-6xl mx-auto">
-          <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-12 min-h-125">
+          <div className="items-center grid grid-cols-1 gap-12 lg:grid-cols-12 min-h-125">
             <div className="order-2 lg:col-span-7 lg:order-1">
               <FadeIn key={`info-${activeIndex}`}>
                 <div className="space-y-4 md:space-y-6">
                   <h3 className="font-serif text-4xl leading-tight text-gray-900 md:text-6xl">
                     {currentMember.name}
                   </h3>
-                  <p className="text-sm font-medium tracking-widest text-blue-600 uppercase">
+                  <p className="text-sm font-medium tracking-widest text-blue-700 uppercase">
                     {currentMember.role}
                   </p>
-                  <p className="max-w-xl text-sm leading-relaxed text-gray-600 md:text-lg md:block">
+                  <p className="max-w-xl text-sm leading-relaxed text-gray-700 md:text-lg md:block">
                     {currentMember.bio}
                   </p>
 
-                  <div className="flex gap-4 pt-8">
+                  <div className="flex pt-8 gap-4">
                     <Button
                       variant="outline"
                       size="icon"
                       onClick={prevMember}
-                      className="w-12 h-12 text-gray-400 transition-colors border-gray-200 rounded-full hover:text-gray-900 hover:border-gray-900"
+                      className="w-12 h-12 text-gray-500 border-gray-200 rounded-full transition-colors hover:text-gray-900 hover:border-gray-900 focus-visible:ring-2 focus-visible:ring-gray-900"
                       aria-label="Anterior miembro"
                     >
                       <ChevronLeft className="w-6 h-6" />
@@ -116,7 +116,7 @@ export function Team() {
                       variant="outline"
                       size="icon"
                       onClick={nextMember}
-                      className="w-12 h-12 text-gray-400 transition-colors border-gray-200 rounded-full hover:text-gray-900 hover:border-gray-900"
+                      className="w-12 h-12 text-gray-400 border-gray-200 rounded-full transition-colors hover:text-gray-900 hover:border-gray-900"
                       aria-label="Siguiente miembro"
                     >
                       <ChevronRight className="w-6 h-6" />
