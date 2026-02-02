@@ -42,7 +42,7 @@ export default function Home() {
             <Link href="/services">
               <Button
                 size="lg"
-                className="h-12 px-8 text-base text-white transition-all bg-gray-900 rounded-full cursor-pointer hover:bg-black focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-900"
+                className="h-12 px-8 text-base text-white bg-gray-900 rounded-full cursor-pointer transition-all hover:bg-black focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-900"
               >
                 Ver todos los servicios
               </Button>

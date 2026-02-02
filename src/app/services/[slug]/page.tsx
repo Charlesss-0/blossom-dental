@@ -56,7 +56,7 @@ export default async function ServicePage({
 
       <section className="relative pt-32 pb-20 overflow-hidden bg-gray-50 lg:pt-40 lg:pb-28">
         <div className="container px-6 mx-auto md:px-12">
-          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+          <div className="items-center grid gap-12 lg:grid-cols-2 lg:gap-20">
             <FadeIn>
               <Link
                 href="/services"
@@ -121,7 +121,7 @@ export default async function ServicePage({
               <h2 className="mb-8 font-serif text-3xl text-gray-900 md:text-4xl">
                 ¿Qué es {service.title}?
               </h2>
-              <div className="space-y-6 text-lg leading-relaxed text-gray-600 settings-rich-text">
+              <div className="text-lg leading-relaxed text-gray-600 space-y-6 settings-rich-text">
                 {service.introduction.map((paragraph, idx) => (
                   <p key={idx}>{paragraph}</p>
                 ))}
@@ -144,7 +144,7 @@ export default async function ServicePage({
 
       <section className="py-20 text-white bg-gray-900">
         <div className="container px-6 mx-auto md:px-12">
-          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-24">
+          <div className="items-center grid gap-12 lg:grid-cols-2 lg:gap-24">
             <FadeIn>
               <h2 className="mb-6 font-serif text-3xl md:text-4xl">
                 ¿Cuándo se recomienda este tratamiento?
@@ -170,7 +170,7 @@ export default async function ServicePage({
                 {service.whenToRecommend.map((item, idx) => (
                   <li
                     key={idx}
-                    className="flex items-start gap-4 p-4 border border-gray-700 rounded-xl bg-gray-800/50"
+                    className="flex items-start p-4 border border-gray-700 gap-4 rounded-xl bg-gray-800/50"
                   >
                     <CheckCircle2 className="w-6 h-6 text-white shrink-0 mt-0.5" />
                     <span className="text-gray-200">{item}</span>

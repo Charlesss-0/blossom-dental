@@ -52,7 +52,7 @@ export default function ServicesPage() {
                 trigger={
                   <Button
                     size="lg"
-                    className="h-12 px-8 text-base transition-all rounded-full cursor-pointer"
+                    className="h-12 px-8 text-base rounded-full cursor-pointer transition-all"
                   >
                     Agendar Cita
                   </Button>
@@ -65,7 +65,7 @@ export default function ServicesPage() {
               >
                 <Button
                   size="lg"
-                  className="h-12 px-8 text-base transition-all rounded-full cursor-pointer"
+                  className="h-12 px-8 text-base rounded-full cursor-pointer transition-all"
                 >
                   Contactar por WhatsApp
                 </Button>

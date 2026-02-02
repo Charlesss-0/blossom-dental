@@ -15,11 +15,11 @@ export function ServicesGrid() {
             <FadeIn key={service.id} delay={index * 0.1}>
               <Link
                 href={`/services/${service.slug}`}
-                className="group block h-full"
+                className="block h-full group"
               >
                 <article className="flex flex-col h-full overflow-hidden bg-white border border-gray-200 rounded-2xl transition-all duration-300 hover:border-gray-300 hover:shadow-lg">
                   {/* Image Container */}
-                  <div className="relative overflow-hidden aspect-3/2 bg-gray-100">
+                  <div className="relative overflow-hidden bg-gray-100 aspect-3/2">
                     <Image
                       src={service.image}
                       alt={service.title}
@@ -41,7 +41,7 @@ export function ServicesGrid() {
                       </p>
                     </div>
 
-                    <div className="flex items-center text-sm font-semibold text-gray-900 group-hover:text-blue-700 transition-colors mt-auto pt-6 border-t border-gray-100">
+                    <div className="flex items-center pt-6 mt-auto text-sm font-semibold text-gray-900 border-t border-gray-100 group-hover:text-blue-700 transition-colors">
                       <span className="mr-2">Ver servicio</span>
                       <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                     </div>

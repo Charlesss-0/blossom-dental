@@ -102,7 +102,7 @@ export function Navbar() {
                 </SheetTitle>
               </SheetHeader>
 
-              <div className="flex flex-col flex-1 gap-8 px-6 py-8 overflow-y-auto">
+              <div className="flex flex-col flex-1 px-6 py-8 overflow-y-auto gap-8">
                 <div className="flex flex-col gap-6">
                   {navLinks.map((link) => (
                     <Link
@@ -119,16 +119,16 @@ export function Navbar() {
                   ))}
                 </div>
 
-                <div className="pt-8 mt-auto space-y-6 border-t border-gray-100">
+                <div className="pt-8 mt-auto border-t border-gray-100 space-y-6">
                   <BookingModal
                     trigger={
-                      <Button className="w-full h-12 text-lg text-white transition-colors bg-black rounded-full hover:bg-gray-800">
+                      <Button className="w-full h-12 text-lg text-white bg-black rounded-full transition-colors hover:bg-gray-800">
                         Agendar Cita
                       </Button>
                     }
                   />
 
-                  <div className="space-y-4 text-sm text-gray-500">
+                  <div className="text-sm text-gray-500 space-y-4">
                     <div>
                       <h4 className="mb-2 font-medium text-gray-900">
                         Contacto

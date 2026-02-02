@@ -7,9 +7,9 @@ import { motion } from "framer-motion";
 
 export function Hero() {
   return (
-    <section className="relative flex items-center min-h-dvh bg-white">
+    <section className="relative flex items-center pt-22 lg:p-0 bg-wite min-h-dvh">
       <div className="container relative px-6 mx-auto">
-        <div className="items-center grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-14">
+        <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-14">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -35,7 +35,7 @@ export function Hero() {
               trigger={
                 <Button
                   size="lg"
-                  className="h-12 px-8 text-base text-white bg-gray-900 rounded-full cursor-pointer transition-all hover:bg-black focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-900"
+                  className="h-12 px-8 text-base text-white transition-all bg-gray-900 rounded-full cursor-pointer hover:bg-black focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-900"
                 >
                   Agendar Cita
                 </Button>
@@ -49,7 +49,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             className="order-1 lg:order-2"
           >
-            <div className="relative overflow-hidden bg-gray-100 shadow-xl aspect-4/3 md:aspect-4/4 rounded-2xl border border-gray-100">
+            <div className="relative overflow-hidden bg-gray-100 border border-gray-100 shadow-xl aspect-4/3 md:aspect-4/4 rounded-2xl">
               <Image
                 src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1600&auto=format&fit=crop"
                 alt="Patient receiving dental care"
@@ -59,7 +59,7 @@ export function Hero() {
                 priority
               />
 
-              <div className="absolute p-4 bottom-4 left-4 right-4 bg-gray-900/95 backdrop-blur-sm rounded-xl md:p-6 shadow-sm">
+              <div className="absolute p-4 shadow-sm bottom-4 left-4 right-4 bg-gray-900/95 backdrop-blur-sm rounded-xl md:p-6">
                 <h3 className="mb-2 font-serif text-lg text-white md:text-xl">
                   Cuidado Odontológico Integral y Moderno
                 </h3>
