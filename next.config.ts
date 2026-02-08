@@ -15,6 +15,7 @@ const nextConfig: NextConfig = {
         pathname: "/**",
       },
     ],
+    qualities: [90, 80, 70, 60, 50],
   },
 };
 
