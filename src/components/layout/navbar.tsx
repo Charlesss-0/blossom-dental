@@ -40,7 +40,7 @@ export function Navbar() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
-          ? "bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-100 py-4"
+          ? "bg-white/80 backdrop-blur-md shadow-sm py-4"
           : "bg-transparent py-6",
       )}
     >
@@ -60,7 +60,10 @@ export function Navbar() {
             <Link
               key={link.label}
               href={link.href}
-              className="text-sm font-medium text-gray-600 transition-colors hover:text-gray-900"
+              className={cn(
+                "text-sm font-medium text-gray-50 transition-colors hover:text-gray-900",
+                isScrolled ? "text-gray-600" : "text-gray-50",
+              )}
             >
               {link.label}
             </Link>
