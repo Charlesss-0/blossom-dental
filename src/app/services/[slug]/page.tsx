@@ -1,6 +1,5 @@
 import { ArrowLeft, CheckCircle2 } from "lucide-react";
 
-import { BookingModal } from "@/components/booking/booking-modal";
 import { Button } from "@/components/ui/button";
 import { FAQ } from "@/components/sections/faq";
 import { FadeIn } from "@/components/ui/fade-in";
@@ -9,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
 import { Navbar } from "@/components/layout/navbar";
+import { WhatsAppCTA } from "@/components/cta/whatsapp-cta";
 import { notFound } from "next/navigation";
 import { services } from "@/lib/services-data";
 
@@ -72,16 +72,14 @@ export default async function ServicePage({
                 {service.description}
               </p>
               <div className="flex flex-wrap gap-4">
-                <BookingModal
-                  trigger={
-                    <Button
-                      size="lg"
-                      className="px-8 text-base text-white bg-gray-900 rounded-full hover:bg-black"
-                    >
-                      Agendar Cita
-                    </Button>
-                  }
-                />
+                <WhatsAppCTA>
+                  <Button
+                    size="lg"
+                    className="px-8 text-base text-white bg-gray-900 rounded-full hover:bg-black"
+                  >
+                    Agendar Cita
+                  </Button>
+                </WhatsAppCTA>
                 <Button
                   variant="outline"
                   size="lg"
@@ -153,16 +151,14 @@ export default async function ServicePage({
                 Si experimentas alguno de los siguientes síntomas o situaciones,
                 es probable que este sea el tratamiento ideal para ti.
               </p>
-              <BookingModal
-                trigger={
-                  <Button
-                    size="lg"
-                    className="h-12 px-8 text-base text-gray-900 bg-white rounded-full hover:bg-gray-100"
-                  >
-                    Consultar con un especialista
-                  </Button>
-                }
-              />
+              <WhatsAppCTA>
+                <Button
+                  size="lg"
+                  className="h-12 px-8 text-base text-gray-900 bg-white rounded-full hover:bg-gray-100"
+                >
+                  Consultar con un especialista
+                </Button>
+              </WhatsAppCTA>
             </FadeIn>
 
             <FadeIn delay={0.2}>

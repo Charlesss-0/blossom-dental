@@ -1,107 +1,12 @@
 "use client";
 
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { formatPhoneNumber, validatePhone } from "@/lib/form-utils";
+import { Clock, MapPin, MessageCircle, Phone } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/ui/fade-in";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { cn } from "@/lib/utils";
-import { submitForm } from "@/actions/submit-form";
-import { toast } from "sonner";
-import { useState } from "react";
+import { WhatsAppCTA } from "../cta/whatsapp-cta";
 
 export function Contact() {
-  const [loading, setLoading] = useState(false);
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [service, setService] = useState("");
-  const [message, setMessage] = useState("");
-  const [errors, setErrors] = useState<{ [key: string]: string }>({});
-
-  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const formatted = formatPhoneNumber(e.target.value);
-    setPhone(formatted);
-    if (errors.phone) {
-      setErrors((prev) => ({ ...prev, phone: "" }));
-    }
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const newErrors: { [key: string]: string } = {};
-
-    if (!name.trim()) {
-      newErrors.name = "El nombre es requerido";
-    } else if (name.trim().length < 3) {
-      newErrors.name = "El nombre debe tener al menos 3 caracteres";
-    }
-
-    if (!phone.trim()) {
-      newErrors.phone = "El teléfono es requerido";
-    } else {
-      const phoneValidation = validatePhone(phone);
-      if (!phoneValidation.isValid) {
-        newErrors.phone = `El teléfono ${phoneValidation.errors.join(" y ")}`;
-      }
-    }
-    if (!service) newErrors.service = "El servicio es requerido";
-    if (!message.trim()) {
-      newErrors.message = "El mensaje es requerido";
-    } else if (message.trim().length < 10) {
-      newErrors.message = "El mensaje debe tener al menos 10 caracteres";
-    }
-
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      toast.error("Por favor revisa los errores en el formulario.");
-      return;
-    }
-
-    setLoading(true);
-    setErrors({});
-
-    toast.message("Enviando tu mensaje...", {
-      description: "Por favor espera mientras procesamos tu solicitud.",
-    });
-
-    try {
-      await submitForm(
-        {
-          name,
-          phone,
-          service,
-          message,
-        },
-        "contact",
-      );
-
-      toast.success("¡Mensaje Enviado!", {
-        description: "Gracias por contactarnos. Te responderemos pronto.",
-      });
-
-      setName("");
-      setPhone("");
-      setService("");
-      setMessage("");
-    } catch (error: unknown) {
-      console.error("Submission error:", error);
-      toast.error("Error al enviar el mensaje.", {
-        description:
-          "Hubo un problema al enviar tu mensaje. Por favor intenta de nuevo.",
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
     <section id="contact" className="py-24 bg-white">
       <div className="container px-6 mx-auto md:px-12">
@@ -114,142 +19,55 @@ export function Contact() {
               Nos encantaría saber de ti
             </h2>
             <p className="mt-4 mb-8 leading-relaxed text-gray-600">
-              Si tienes alguna consulta o deseas agendar una cita, completa el
-              formulario y nuestro equipo se pondrá en contacto contigo lo antes
-              posible.
+              ¿Tienes alguna consulta o deseas agendar una cita? Escríbenos
+              directamente por WhatsApp y con gusto te atenderemos.
             </p>
-            <form className="space-y-6" onSubmit={handleSubmit}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2 md:col-span-2">
-                  <label
-                    htmlFor="contact-name"
-                    className="text-sm font-medium text-gray-700"
-                  >
-                    Nombre <span className="text-red-500">*</span>
-                  </label>
-                  <Input
-                    id="contact-name"
-                    placeholder="Tu nombre"
-                    className={cn(
-                      "bg-gray-50 border-gray-200",
-                      errors.name &&
-                        "border-red-500 focus-visible:ring-red-500",
-                    )}
-                    value={name}
-                    onChange={(e) => {
-                      setName(e.target.value);
-                      if (errors.name)
-                        setErrors((prev) => ({ ...prev, name: "" }));
-                    }}
-                    maxLength={40}
-                  />
-                  {errors.name && (
-                    <p className="text-xs text-red-500">{errors.name}</p>
-                  )}
-                </div>
-                <div className="space-y-2 col-span-1">
-                  <label
-                    htmlFor="contact-phone"
-                    className="text-sm font-medium text-gray-700"
-                  >
-                    <span>Teléfono</span>{" "}
-                    <span className="text-red-500">*</span>
-                  </label>
-                  <Input
-                    id="contact-phone"
-                    type="tel"
-                    placeholder="Tu número de teléfono"
-                    translate="yes"
-                    className={cn(
-                      "bg-gray-50 border-gray-200 w-full",
-                      errors.phone &&
-                        "border-red-500 focus-visible:ring-red-500",
-                    )}
-                    value={phone}
-                    onChange={handlePhoneChange}
-                  />
-                  {errors.phone && (
-                    <p className="text-xs text-red-500">{errors.phone}</p>
-                  )}
-                </div>
-                <div className="space-y-2 md:col-span-1">
-                  <label
-                    htmlFor="contact-service"
-                    className="text-sm font-medium text-gray-700"
-                  >
-                    <span>Servicio de interés</span>{" "}
-                    <span className="text-red-500">*</span>
-                  </label>
-                  <Select
-                    value={service}
-                    onValueChange={(v) => {
-                      setService(v);
-                      if (errors.service)
-                        setErrors((prev) => ({ ...prev, service: "" }));
-                    }}
-                  >
-                    <SelectTrigger
-                      id="contact-service"
-                      className={cn(
-                        "bg-gray-50 border-gray-200 w-full",
-                        errors.service && "border-red-500 focus:ring-red-500",
-                      )}
-                    >
-                      <SelectValue placeholder="Selecciona un servicio" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="general">
-                        Odontología General
-                      </SelectItem>
-                      <SelectItem value="ortodoncia">Ortodoncia</SelectItem>
-                      <SelectItem value="endodoncia">Endodoncia</SelectItem>
-                      <SelectItem value="periodoncia">Periodoncia</SelectItem>
-                      <SelectItem value="cirugia">Cirugía</SelectItem>
-                      <SelectItem value="implantes">Implantes</SelectItem>
-                      <SelectItem value="otro">Otro</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  {errors.service && (
-                    <p className="text-xs text-red-500">{errors.service}</p>
-                  )}
-                </div>
-              </div>
-              <div className="space-y-2">
-                <label
-                  htmlFor="contact-message"
-                  className="text-sm font-medium text-gray-700"
-                >
-                  <span>Mensaje</span> <span className="text-red-500">*</span>
-                </label>
-                <Textarea
-                  id="contact-message"
-                  placeholder="¿Cómo podemos ayudarte?"
-                  translate="yes"
-                  className={cn(
-                    "min-h-37.5 bg-gray-50 border-gray-200 resize-none",
-                    errors.message &&
-                      "border-red-500 focus-visible:ring-red-500",
-                  )}
-                  value={message}
-                  onChange={(e) => {
-                    setMessage(e.target.value);
-                    if (errors.message)
-                      setErrors((prev) => ({ ...prev, message: "" }));
-                  }}
-                  maxLength={300}
-                />
-                {errors.message && (
-                  <p className="text-xs text-red-500">{errors.message}</p>
-                )}
-              </div>
-              <Button
-                type="submit"
-                disabled={loading}
-                className="w-full px-8 py-6 text-white bg-gray-900 rounded-full cursor-pointer md:w-auto hover:bg-black"
-              >
-                {loading ? "Enviando..." : "Enviar Mensaje"}
+
+            <WhatsAppCTA>
+              <Button className="inline-flex items-center gap-3 px-8 py-4 text-white bg-[#25D366] hover:bg-[#1ebe5c] rounded-full transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 font-medium text-lg mb-12">
+                <MessageCircle className="w-6 h-6" />
+                Escríbenos por WhatsApp
               </Button>
-            </form>
+            </WhatsAppCTA>
+
+            <div className="space-y-6 mt-4">
+              <div className="flex items-start gap-4">
+                <div className="shrink-0 w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">
+                  <Phone className="w-5 h-5 text-gray-600" />
+                </div>
+                <div>
+                  <p className="font-medium text-gray-900">
+                    Teléfono / WhatsApp
+                  </p>
+                  <p className="text-gray-600">+505 5792 5341</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="shrink-0 w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">
+                  <Clock className="w-5 h-5 text-gray-600" />
+                </div>
+                <div>
+                  <p className="font-medium text-gray-900">
+                    Horario de atención
+                  </p>
+                  <p className="text-gray-600">
+                    Lunes – Viernes: 8:30 AM – 5:30 PM
+                  </p>
+                  <p className="text-gray-600">Sábados: 8:00 AM – 4:00 PM</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="shrink-0 w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">
+                  <MapPin className="w-5 h-5 text-gray-600" />
+                </div>
+                <div>
+                  <p className="font-medium text-gray-900">Ubicación</p>
+                  <p className="text-gray-600">Managua, Nicaragua</p>
+                </div>
+              </div>
+            </div>
           </FadeIn>
 
           <FadeIn

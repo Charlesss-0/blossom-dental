@@ -2,10 +2,9 @@
 
 import { Facebook, Instagram } from "lucide-react";
 
-import { BookingModal } from "@/components/booking/booking-modal";
 import Image from "next/image";
 import Link from "next/link";
-import { scrollToSection } from "@/lib/utils";
+import { WhatsAppCTA } from "@/components/cta/whatsapp-cta";
 
 export function Footer() {
   return (
@@ -51,13 +50,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <BookingModal
-                  trigger={
-                    <button className="text-sm text-left text-gray-300 rounded-sm cursor-pointer transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400">
-                      Agendar Cita
-                    </button>
-                  }
-                />
+                <WhatsAppCTA>
+                  <button className="text-sm text-left text-gray-300 rounded-sm cursor-pointer transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400">
+                    Agendar Cita
+                  </button>
+                </WhatsAppCTA>
               </li>
             </ul>
           </div>

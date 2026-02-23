@@ -11,11 +11,11 @@ import {
 } from "@/components/ui/sheet";
 import { cn, scrollToSection } from "@/lib/utils";
 
-import { BookingModal } from "@/components/booking/booking-modal";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import { Menu } from "lucide-react";
+import { WhatsAppCTA } from "@/components/cta/whatsapp-cta";
 
 const navLinks = [
   { href: "/#about", label: "Nosotros" },
@@ -68,13 +68,11 @@ export function Navbar() {
               {link.label}
             </Link>
           ))}
-          <BookingModal
-            trigger={
-              <Button className="px-6 text-white bg-gray-900 rounded-full hover:bg-gray-800">
-                Agendar Cita
-              </Button>
-            }
-          />
+          <WhatsAppCTA>
+            <Button className="px-6 text-white bg-gray-900 rounded-full hover:bg-gray-800">
+              Agendar Cita
+            </Button>
+          </WhatsAppCTA>
         </div>
 
         <div className="md:hidden">
@@ -123,13 +121,11 @@ export function Navbar() {
                 </div>
 
                 <div className="pt-8 mt-auto border-t border-gray-100 space-y-6">
-                  <BookingModal
-                    trigger={
-                      <Button className="w-full h-12 text-lg text-white bg-black rounded-full transition-colors hover:bg-gray-800">
-                        Agendar Cita
-                      </Button>
-                    }
-                  />
+                  <WhatsAppCTA>
+                    <Button className="w-full h-12 text-lg text-white bg-black rounded-full transition-colors hover:bg-gray-800">
+                      Agendar Cita
+                    </Button>
+                  </WhatsAppCTA>
 
                   <div className="text-sm text-gray-500 space-y-4">
                     <div>

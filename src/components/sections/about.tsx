@@ -1,7 +1,7 @@
-import { BookingModal } from "@/components/booking/booking-modal";
 import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/ui/fade-in";
 import { StackedSlider } from "@/components/ui/stacked-slider";
+import { WhatsAppCTA } from "@/components/cta/whatsapp-cta";
 
 const clinicImages = [
   "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2000&auto=format&fit=crop",
@@ -48,16 +48,14 @@ export function About() {
             </div>
 
             <div className="mt-10">
-              <BookingModal
-                trigger={
-                  <Button
-                    size="lg"
-                    className="h-12 px-8 text-base text-white bg-gray-900 rounded-full transition-all hover:bg-black focus-visible:ring-2 focus-visible:ring-gray-900"
-                  >
-                    Agendar Cita
-                  </Button>
-                }
-              />
+              <WhatsAppCTA>
+                <Button
+                  size="lg"
+                  className="h-12 px-8 text-base text-white bg-gray-900 rounded-full transition-all hover:bg-black focus-visible:ring-2 focus-visible:ring-gray-900"
+                >
+                  Agendar Cita
+                </Button>
+              </WhatsAppCTA>
             </div>
           </FadeIn>
         </div>

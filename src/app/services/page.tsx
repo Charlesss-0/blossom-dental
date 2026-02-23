@@ -1,10 +1,10 @@
-import { BookingModal } from "@/components/booking/booking-modal";
 import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/ui/fade-in";
 import { Footer } from "@/components/layout/footer";
 import { Metadata } from "next";
 import { Navbar } from "@/components/layout/navbar";
 import { ServicesGrid } from "@/components/sections/services-grid";
+import { WhatsAppCTA } from "@/components/cta/whatsapp-cta";
 
 export const metadata: Metadata = {
   title: "Servicios Dentales en Managua | Blossom Dental",
@@ -48,28 +48,14 @@ export default function ServicesPage() {
               calidez y profesionalismo que nos distingue.
             </p>
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
-              <BookingModal
-                trigger={
-                  <Button
-                    size="lg"
-                    className="h-12 px-8 text-base rounded-full cursor-pointer transition-all"
-                  >
-                    Agendar Cita
-                  </Button>
-                }
-              />
-              <a
-                href="https://wa.me/50557925341?text=Hola,%20me%20gustar%C3%ADa%20más%20información%20sobre%20sus%20servicios."
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <WhatsAppCTA>
                 <Button
                   size="lg"
                   className="h-12 px-8 text-base rounded-full cursor-pointer transition-all"
                 >
                   Contactar por WhatsApp
                 </Button>
-              </a>
+              </WhatsAppCTA>
             </div>
           </FadeIn>
         </div>

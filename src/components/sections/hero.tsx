@@ -1,8 +1,8 @@
 "use client";
 
-import { BookingModal } from "@/components/booking/booking-modal";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { WhatsAppCTA } from "@/components/cta/whatsapp-cta";
 import { motion } from "framer-motion";
 
 export function Hero() {
@@ -45,16 +45,14 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
           >
-            <BookingModal
-              trigger={
-                <Button
-                  size="lg"
-                  className="h-14 px-10 text-lg font-medium text-gray-900 bg-white hover:bg-gray-100 rounded-full transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
-                >
-                  Agendar Cita
-                </Button>
-              }
-            />
+            <WhatsAppCTA>
+              <Button
+                size="lg"
+                className="h-14 px-10 text-lg font-medium text-gray-900 bg-white hover:bg-gray-100 rounded-full transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+              >
+                Agendar Cita
+              </Button>
+            </WhatsAppCTA>
           </motion.div>
         </motion.div>
       </div>
