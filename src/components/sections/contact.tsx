@@ -1,9 +1,10 @@
 "use client";
 
-import { Clock, MapPin, MessageCircle, Phone } from "lucide-react";
+import { Clock, MapPin, Phone } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/ui/fade-in";
+import Image from "next/image";
 import { WhatsAppCTA } from "../cta/whatsapp-cta";
 
 export function Contact() {
@@ -24,8 +25,13 @@ export function Contact() {
             </p>
 
             <WhatsAppCTA>
-              <Button className="inline-flex items-center gap-3 px-8 py-4 text-white bg-[#25D366] hover:bg-[#1ebe5c] rounded-full transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 font-medium text-lg mb-12">
-                <MessageCircle className="w-6 h-6" />
+              <Button className="inline-flex items-center gap-3 h-max px-8 py-3 text-white bg-[#25D366] hover:bg-[#1ebe5c] rounded-full transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 font-medium text-lg mb-12">
+                <Image
+                  src="/whatsapp.svg"
+                  width={24}
+                  height={24}
+                  alt="WhatsApp"
+                />
                 Escríbenos por WhatsApp
               </Button>
             </WhatsAppCTA>
