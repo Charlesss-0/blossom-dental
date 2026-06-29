@@ -139,7 +139,7 @@ export function Footer() {
 							className="flex items-center gap-2"
 						>
 							<span className="h-1.5 w-1.5 rounded-full bg-gray-500" aria-hidden="true" />
-							Web services by Carlos Aragon
+							Servicios web por Carlos Aragon
 						</a>
 					</p>
 				</div>
