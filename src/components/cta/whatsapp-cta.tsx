@@ -11,6 +11,11 @@ interface BookingModalProps {
 export function WhatsAppCTA({ children }: BookingModalProps) {
 	const handleClick = () => {
 		window.open(WHATSAPP_URL, '_blank', 'noopener,noreferrer');
+
+		window.dataLayer = window.dataLayer || [];
+		window.dataLayer.push({
+			event: 'whatsapp_click',
+		});
 	};
 
 	if (children) {

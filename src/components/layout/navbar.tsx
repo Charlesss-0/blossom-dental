@@ -10,6 +10,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Menu } from 'lucide-react';
 import { WhatsAppCTA } from '@/components/cta/whatsapp-cta';
+import { usePathname } from 'next/navigation';
 
 const navLinks = [
 	{ href: '/#about', label: 'Nosotros' },
@@ -20,6 +21,8 @@ const navLinks = [
 export function Navbar() {
 	const [isScrolled, setIsScrolled] = React.useState(false);
 	const [open, setOpen] = React.useState(false);
+	const pathname = usePathname();
+	const homepage = pathname === '/';
 
 	React.useEffect(() => {
 		const handleScroll = () => {
@@ -53,8 +56,8 @@ export function Navbar() {
 							key={link.label}
 							href={link.href}
 							className={cn(
-								'text-sm font-medium text-gray-50 transition-colors hover:text-gray-900',
-								isScrolled ? 'text-gray-600' : 'text-gray-50'
+								'text-sm font-medium transition-colors hover:text-gray-900',
+								!isScrolled && homepage ? 'text-gray-50' : 'text-gray-600'
 							)}
 						>
 							{link.label}
