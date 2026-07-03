@@ -19,11 +19,6 @@ const defaultFaqs = [
 			'Sí, contamos con opciones de pago flexibles para tratamientos que lo requieran. Nuestro equipo administrativo puede ayudarte a encontrar una alternativa que se ajuste a tu presupuesto.',
 	},
 	{
-		question: '¿Qué debo hacer en caso de una emergencia dental?',
-		answer:
-			'Si presentas una emergencia dental, contáctanos lo antes posible por teléfono o WhatsApp. Hacemos nuestro mayor esfuerzo por atender emergencias el mismo día y brindarte orientación inmediata.',
-	},
-	{
 		question: '¿Cuánto tiempo dura una cita típica?',
 		answer:
 			'La duración de la cita depende del tipo de atención. Una consulta inicial suele durar entre 30 y 60 minutos, mientras que otros procedimientos pueden requerir más tiempo o varias visitas.',
