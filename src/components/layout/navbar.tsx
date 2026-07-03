@@ -56,7 +56,7 @@ export function Navbar() {
 							key={link.label}
 							href={link.href}
 							className={cn(
-								'text-sm font-medium transition-colors hover:text-gray-900',
+								'text-sm font-medium transition-colors',
 								!isScrolled && homepage ? 'text-gray-50' : 'text-gray-600'
 							)}
 						>
