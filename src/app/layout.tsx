@@ -5,7 +5,6 @@ import { Inter, Playfair_Display } from 'next/font/google';
 
 import { GoogleTagManager } from '@next/third-parties/google';
 import type { Metadata } from 'next';
-import { Toaster } from '@/components/ui/sonner';
 
 const inter = Inter({
 	variable: '--font-sans',
@@ -142,7 +141,6 @@ export default function RootLayout({
 					}}
 				/>
 				{children}
-				<Toaster />
 			</body>
 		</html>
 	);

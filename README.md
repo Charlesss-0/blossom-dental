@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Blossom Dental
 
-## Getting Started
+A modern, dental clinic website for **Blossom Dental** in Managua, Nicaragua. Built with Next.js and styled with Tailwind CSS v4.
 
-First, run the development server:
+## Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+| Technology | Purpose |
+|---|---|
+| **Next.js 16** (App Router) | Framework |
+| **React 19** | UI Library |
+| **TypeScript** | Language |
+| **Tailwind CSS v4** | Styling |
+| **Framer Motion** | Animations |
+| **shadcn/ui** (New York) | Component Library |
+| **Radix UI** | Headless Primitives |
+| **Lucide React** | Icons |
+| **date-fns** | Date handling |
+| **schema-dts** | Structured data (JSON-LD) |
+| **next-sitemap** | Sitemap generation |
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── layout.tsx           # Root layout (fonts, metadata, JSON-LD, GTM)
+│   ├── page.tsx             # Homepage (single-page landing)
+│   └── services/
+│       ├── page.tsx         # Services listing grid
+│       └── [slug]/page.tsx  # Dynamic service detail (SSG)
+├── components/
+│   ├── cta/                 # WhatsApp CTA component
+│   ├── layout/              # Navbar, Footer
+│   ├── sections/            # Hero, About, Services, Team, FAQ, Contact
+│   └── ui/                  # shadcn/ui primitives + custom components
+└── lib/
+    ├── services-data.ts     # Service content and FAQs
+    └── utils.ts             # cn() helper + scrollToSection
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Pages
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **`/`** — Single-page landing with Navbar, Hero, Location, Services, About, Team, FAQ, Contact, Footer
+- **`/services`** — Full services grid with descriptions and links
+- **`/services/[slug]`** — Dynamic service detail pages (SSG with 6 services)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Services
 
-## Learn More
+1. Odontología General
+2. Ortodoncia
+3. Endodoncia
+4. Periodoncia
+5. Cirugía Oral
+6. Implantes Dentales
 
-To learn more about Next.js, take a look at the following resources:
+## Environment Variables
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+NEXT_PUBLIC_SITE_URL=
+NEXT_PUBLIC_WHATSAPP_NUMBER=
+NEXT_PUBLIC_WHATSAPP_MESSAGE=
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Scripts
 
-## Deploy on Vercel
+| Command | Description |
+|---|---|
+| `pnpm dev` | Start development server (Turbopack) |
+| `pnpm build` | Production build + sitemap generation |
+| `pnpm start` | Start production server |
+| `pnpm lint` | Run ESLint (flat config v9) |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Features
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **WhatsApp booking** — Appointment CTAs with pre-filled messages and GTM tracking
+- **SEO** — Structured data (Dentist schema), Spanish metadata, Open Graph, sitemap
+- **Analytics** — Google Tag Manager integration with custom events
+- **Responsive** — Mobile-first with collapsible nav drawer (Sheet)
