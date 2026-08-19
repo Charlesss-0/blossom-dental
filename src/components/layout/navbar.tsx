@@ -1,42 +1,49 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { cn, scrollToSection } from '@/lib/utils';
-
-import { Button } from '@/components/ui/button';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Menu } from 'lucide-react';
-import { WhatsAppCTA } from '@/components/cta/whatsapp-cta';
-import { usePathname } from 'next/navigation';
+import { Menu } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import * as React from "react";
+import { WhatsAppCTA } from "@/components/cta/whatsapp-cta";
+import { Button } from "@/components/ui/button";
+import {
+	Sheet,
+	SheetContent,
+	SheetHeader,
+	SheetTitle,
+	SheetTrigger,
+} from "@/components/ui/sheet";
+import { cn, scrollToSection } from "@/lib/utils";
 
 const navLinks = [
-	{ href: '/#about', label: 'Nosotros' },
-	{ href: '/services', label: 'Servicios' },
-	{ href: '/#contact', label: 'Contacto' },
+	{ href: "/#about", label: "Nosotros" },
+	{ href: "/services", label: "Servicios" },
+	{ href: "/#contact", label: "Contacto" },
 ];
 
 export function Navbar() {
+	const router = useRouter();
+	const pathname = usePathname();
+	const homepage = pathname === "/";
 	const [isScrolled, setIsScrolled] = React.useState(false);
 	const [open, setOpen] = React.useState(false);
-	const pathname = usePathname();
-	const homepage = pathname === '/';
 
 	React.useEffect(() => {
 		const handleScroll = () => {
 			setIsScrolled(window.scrollY > 20);
 		};
-		window.addEventListener('scroll', handleScroll);
-		return () => window.removeEventListener('scroll', handleScroll);
+		window.addEventListener("scroll", handleScroll);
+		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
 
 	return (
 		<nav
 			className={cn(
-				'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-				isScrolled ? 'bg-white/80 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'
+				"fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+				isScrolled
+					? "bg-white/80 backdrop-blur-md shadow-sm py-4"
+					: "bg-transparent py-6",
 			)}
 		>
 			<div className="container flex items-center justify-between px-6 mx-auto md:px-12">
@@ -51,13 +58,13 @@ export function Navbar() {
 				</Link>
 
 				<div className="items-center hidden gap-8 md:flex">
-					{navLinks.map(link => (
+					{navLinks.map((link) => (
 						<Link
 							key={link.label}
 							href={link.href}
 							className={cn(
-								'text-sm font-medium transition-colors',
-								!isScrolled && homepage ? 'text-gray-50' : 'text-gray-600'
+								"text-sm font-medium transition-colors",
+								!isScrolled && homepage ? "text-gray-50" : "text-gray-600",
 							)}
 						>
 							{link.label}
@@ -73,7 +80,11 @@ export function Navbar() {
 				<div className="md:hidden">
 					<Sheet open={open} onOpenChange={setOpen}>
 						<SheetTrigger asChild>
-							<Button variant="ghost" size="icon" className={cn('text-gray-900 transition-colors')}>
+							<Button
+								variant="ghost"
+								size="icon"
+								className={cn("text-gray-900 transition-colors")}
+							>
 								<Menu size={24} />
 							</Button>
 						</SheetTrigger>
@@ -96,18 +107,19 @@ export function Navbar() {
 
 							<div className="flex flex-col flex-1 px-6 py-8 overflow-y-auto gap-8">
 								<div className="flex flex-col gap-6">
-									{navLinks.map(link => (
-										<Link
+									{navLinks.map((link) => (
+										<button
 											key={link.label}
-											href={link.href}
-											className="font-serif text-2xl font-medium text-gray-900 transition-colors hover:text-gray-600"
-											onClick={e => {
+											type="button"
+											className="font-serif text-2xl font-medium text-gray-900 transition-colors hover:text-gray-600 text-start"
+											onClick={(e) => {
 												scrollToSection(e, link.href);
+												router.push(link.href);
 												setOpen(false);
 											}}
 										>
 											{link.label}
-										</Link>
+										</button>
 									))}
 								</div>
 
@@ -118,9 +130,11 @@ export function Navbar() {
 										</Button>
 									</WhatsAppCTA>
 
-									<div className="text-sm text-gray-500 space-y-4">
+									<div className="text-sm text-gray-500 space-y-4 mt-4">
 										<div>
-											<h4 className="mb-2 font-medium text-gray-900">Contacto</h4>
+											<h4 className="mb-2 font-medium text-gray-900">
+												Contacto
+											</h4>
 											<a
 												href="https://wa.me/50557925341?text=Hola,%20me%20gustar%C3%ADa%20agendar%20una%20cita."
 												target="_blank"
@@ -131,10 +145,12 @@ export function Navbar() {
 											</a>
 										</div>
 										<div>
-											<h4 className="mb-2 font-medium text-gray-900">Ubicación</h4>
+											<h4 className="mb-2 font-medium text-gray-900">
+												Ubicación
+											</h4>
 											<p className="leading-relaxed">
-												Los Robles: de dónde fue la Vicky 2c al oeste, 1 al norte, media al este,
-												Managua
+												Los Robles: de dónde fue la Vicky 2c al oeste, 1 al
+												norte, media al este, Managua
 											</p>
 										</div>
 									</div>
